@@ -10,7 +10,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>topcds</artifactId>
+    <artifactId>topcds-ms</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
