@@ -1,12 +1,12 @@
-# Application - CD Book Store
+# Application - CD Book Store MicroServices
 
 * *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org)
 * *Level* : Intermediate
 * *Technologies* : Java EE 7 (JPA 2.1, CDI 1.1, Bean Validation 1.1, EJB Lite 3.2, JSF 2.2, JAX-RS 2.0), Twitter Bootstrap (Bootstrap 3.x, JQuery 2.x, PrimeFaces 5.x)
-* *Application Servers* : WildFly 8, WildFly 9, WildFly 10
-* *Summary* : An e-commerce web application using Java EE 7
+* *Application Servers* : WildFly 10, WildFly Swarm
+* *Summary* : An e-commerce web application using Java EE 7 and MicroServices
 
-[Download the code from GitHub](https://github.com/agoncal/agoncal-application-cdbookstore)
+[Download the code from GitHub](https://github.com/agoncal/agoncal-application-cdbookstore-ms)
 
 ## Purpose of this application
 
@@ -14,8 +14,9 @@ This e-commerce web app allows you to buy CDs and Books.
 
 The goals of this sample is to :
 
-* use Java EE 7 and just Java EE 7 : no external framework or dependency (except web frameworks or logging APIs)
-* make it simple : no complex business algorithm, the point is to bring Java EE 7 technologies together to create an eCommerce website
+* use Java EE 7 as back-end microservices 
+* give a JSF web user interface (others might come, Angular 2?) 
+* make it simple : no complex business algorithm, the point is to bring Java EE 7 technologies together to create an eCommerce website using MicroServices
 
 The only external framework used are [Arquillian](http://arquillian.org/), [Twitter Bootstrap](http://twitter.github.io/bootstrap/) and [PrimeFaces](http://www.primefaces.org/). Arquillian is used for integration testing. Using Maven profile, you can test services, injection, persistence... against different application servers. Twitter Bootstrap and PrimeFaces bring a bit of beauty to the web interface.
 
@@ -25,26 +26,24 @@ To fill up the database, I've used some Amazon Web Services. You will find the r
 
 The application is divided in several modules: 
 
-* The CD-Boostore is the main web app that allows you to buy CDs and Books.
-* The Top Sells is a REST service that calculates the top sells. This REST service is invoked by CD-Boostore to display the top sells on the main page
-* Billing : is a Message Driven Bean that receives all the sells that have been done and creates invoices  
+* The CD-Boostore is the main web app that allows you to buy CDs and Books. It invokes all the following REST services
+* Invoice is a REST service that creates invoices based on the user's shopping cart
+* TopBooks is a REST service that calculates the top selling books
+* TopCDs is a REST service that calculates the top selling cds
 
 ## Compile and package
 
 Being Maven centric, you can compile and package it without tests using `mvn clean compile -Dmaven.test.skip=true`, `mvn clean package -Dmaven.test.skip=true` or `mvn clean install -Dmaven.test.skip=true`. Once you have your war file, you can deploy it.
 
-### Starting JBoss/WildFly
+## Deploy and execute the application
 
-The invoice is an MDB, so you need to start the full profile of JBoss : 
+### War files in a single WildFly
 
-* `./standalone.sh -c standalone-full.xml`
+Startup one instance of WildFly :
 
-Then you need to create a Queue with the following command in `jboss_cli.sh` :
+* `./standalone.sh` (ports 8080 / 9990)
 
-* Create the queue : `jms-queue add --queue-address=invoiceQueue --entries=jms/queue/invoiceQueue`
-* Delete the queue : `jms-queue remove --queue-address=invoiceQueue`
-
-### Several WildFlies
+### War files in several WildFly
 
 If you want to execute each application on different WildFly instances, just do :
 
