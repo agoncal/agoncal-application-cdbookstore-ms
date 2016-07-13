@@ -1,0 +1,15 @@
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceReader.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/service/InvoiceService.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/util/Discount.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/view/InvoiceBean.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/view/ViewUtils.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceJobServlet.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/web/InvoiceServlet.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceSummaries.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceProcessor.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/util/ResourceProducer.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/service/InvoiceMDB.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/util/RateProducer.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceWriter.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/batch/InvoiceSummary.java
+/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/invoice-ms/src/main/java/org/agoncal/application/invoice/util/Vat.java

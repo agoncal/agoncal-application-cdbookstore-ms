@@ -1,0 +1,15 @@
+org/agoncal/application/cdbookstore/rest/CDEndpointTest.class
+org/agoncal/application/cdbookstore/view/admin/PublisherBeanTest.class
+org/agoncal/application/cdbookstore/rest/BookEndpointTest.class
+org/agoncal/application/cdbookstore/view/admin/CountryBeanTest.class
+org/agoncal/application/cdbookstore/rest/BookMarshallerTest.class
+org/agoncal/application/cdbookstore/view/admin/GenreBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/BookBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/CDBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/LabelBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/AuthorBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/UserBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/ItemBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/MusicianBeanTest.class
+org/agoncal/application/cdbookstore/view/account/AccountBeanTest.class
+org/agoncal/application/cdbookstore/view/admin/CategoryBeanTest.class

@@ -1,0 +1,5 @@
+org/agoncal/sample/javaee/enoughappserver/topbooks/rest/RestApplication.class
+org/agoncal/sample/javaee/enoughappserver/topbooks/rest/BookEndpoint.class
+org/agoncal/sample/javaee/enoughappserver/topbooks/model/Book.class
+org/agoncal/sample/javaee/enoughappserver/topbooks/utils/ResourceProducer.class
+org/agoncal/sample/javaee/enoughappserver/topbooks/model/package-info.class

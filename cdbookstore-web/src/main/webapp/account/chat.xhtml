@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/resources/scaffold/template.xhtml">
+
+    <ui:define name="title">Chat</ui:define>
+
+    <ui:define name="message">Chat with customer support</ui:define>
+
+    <ui:define name="body">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form action="">
+
+                    <table>
+                        <tr>
+                            <td>
+                                Users<br/>
+                                <textarea readonly="true" rows="6" cols="20" id="userField"></textarea>
+                            </td>
+                            <td>
+                                Chat Log<br/>
+                                <textarea readonly="true" rows="6" cols="50" id="chatlogField"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input id="textField" name="name" value="Enter your name" type="text"/><br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input onclick="join();" value="Join" type="button"/>
+                                <input onclick="send_message();" value="Chat" type="button"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="output"></div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <h:outputScript name="websocket.js"/>
+
+    </ui:define>
+
+</ui:composition>
