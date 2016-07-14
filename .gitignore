@@ -1,10 +1,10 @@
+*/target/**
 .DS_Store
 Thumbs.db
 .idea
 *.log
 *.jdbc
 *.iml
-target
 *.class
 *.jar
 *.war
