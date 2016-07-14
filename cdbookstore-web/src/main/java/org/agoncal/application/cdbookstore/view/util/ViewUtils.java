@@ -45,10 +45,10 @@ public final class ViewUtils {
                     if (field.getAnnotation(Id.class) != null) {
                         // Find a matching getter and invoke it to display the key
                         for (Method method : object.getClass()
-                                .getDeclaredMethods()) {
+                            .getDeclaredMethods()) {
                             if (method.equals(new PropertyDescriptor(field
-                                    .getName(), object.getClass())
-                                    .getReadMethod())) {
+                                .getName(), object.getClass())
+                                .getReadMethod())) {
                                 return method.invoke(object).toString();
                             }
                         }

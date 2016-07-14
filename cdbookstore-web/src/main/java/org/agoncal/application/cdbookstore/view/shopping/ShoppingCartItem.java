@@ -87,8 +87,8 @@ public class ShoppingCartItem {
     @Override
     public String toString() {
         return "ShoppingCartItem{" +
-                "item=" + item +
-                ", quantity=" + quantity +
-                '}';
+            "item=" + item +
+            ", quantity=" + quantity +
+            '}';
     }
 }

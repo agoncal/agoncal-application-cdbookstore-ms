@@ -129,7 +129,7 @@ public class CDBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -145,7 +145,7 @@ public class CDBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -184,18 +184,18 @@ public class CDBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<CD> root = countCriteria.from(CD.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<CD> criteria = builder.createQuery(CD.class);
         root = criteria.from(CD.class);
         TypedQuery<CD> query = this.entityManager.createQuery(criteria.select(
-                root).where(getSearchPredicates(root)));
+            root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -207,14 +207,14 @@ public class CDBean implements Serializable {
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("title")),
-                    '%' + title.toLowerCase() + '%'));
+                builder.lower(root.<String>get("title")),
+                '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("description")),
-                    '%' + description.toLowerCase() + '%'));
+                builder.lower(root.<String>get("description")),
+                '%' + description.toLowerCase() + '%'));
         }
         Label label = this.example.getLabel();
         if (label != null) {
@@ -243,9 +243,9 @@ public class CDBean implements Serializable {
     public List<CD> getAll() {
 
         CriteriaQuery<CD> criteria = this.entityManager.getCriteriaBuilder()
-                .createQuery(CD.class);
+            .createQuery(CD.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(CD.class))).getResultList();
+            criteria.select(criteria.from(CD.class))).getResultList();
     }
 
    /*
@@ -255,7 +255,7 @@ public class CDBean implements Serializable {
     public Converter getConverter() {
 
         final CDBean ejbProxy = this.sessionContext
-                .getBusinessObject(CDBean.class);
+            .getBusinessObject(CDBean.class);
 
         return new Converter() {
 

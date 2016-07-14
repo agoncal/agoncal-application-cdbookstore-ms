@@ -30,18 +30,18 @@ public class BookBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(BookBean.class)
-                .addClass(Book.class)
-                .addClass(Item.class)
-                .addClass(Language.class)
-                .addClass(LanguageConverter.class)
-                .addClass(Category.class)
-                .addClass(Publisher.class)
-                .addClass(Artist.class)
-                .addClass(Author.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(BookBean.class)
+            .addClass(Book.class)
+            .addClass(Item.class)
+            .addClass(Language.class)
+            .addClass(LanguageConverter.class)
+            .addClass(Category.class)
+            .addClass(Publisher.class)
+            .addClass(Artist.class)
+            .addClass(Author.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -88,6 +88,6 @@ public class BookBeanTest {
         bookBean.setExample(example);
         bookBean.paginate();
         assertTrue((bookBean.getPageItems().size() == bookBean.getPageSize())
-                || (bookBean.getPageItems().size() == bookBean.getCount()));
+            || (bookBean.getPageItems().size() == bookBean.getCount()));
     }
 }

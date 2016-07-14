@@ -5,10 +5,10 @@
     <container qualifier="arquillian-wildfly-remote"/>
 
     <container qualifier="arquillian-wildfly-qualif">
-            <configuration>
-                <property name="host" value="123.45.34.22"></property>
-            </configuration>
+        <configuration>
+            <property name="host" value="123.45.34.22"></property>
+        </configuration>
         <protocol type="http"/>
-            </container>
+    </container>
 
 </arquillian>

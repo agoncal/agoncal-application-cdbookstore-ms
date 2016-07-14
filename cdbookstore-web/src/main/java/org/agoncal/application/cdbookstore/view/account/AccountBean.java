@@ -34,32 +34,26 @@ public class AccountBean implements Serializable {
     // =          Injection Points          =
     // ======================================
 
+    private static final String COOKIE_NAME = "applicationCDBookStoreCookie";
+    private static final int COOKIE_AGE = 60; // Expires after 60 seconds or even 2_592_000 for one month
     @Inject
     private BeanManager beanManager;
-
     @Inject
     private FacesContext facesContext;
-
     @Inject
     private HttpServletResponse response;
-
-    @Inject
-    private HttpServletRequest request;
-
-    @Inject
-    private EntityManager em;
 
     // ======================================
     // =             Constants              =
     // ======================================
-
-    private static final String COOKIE_NAME = "applicationCDBookStoreCookie";
-    private static final int COOKIE_AGE = 60; // Expires after 60 seconds or even 2_592_000 for one month
+    @Inject
+    private HttpServletRequest request;
+    @Inject
+    private EntityManager em;
 
     // ======================================
     // =             Attributes             =
     // ======================================
-
     // Logged user
     private User user = new User();
     private boolean loggedIn;
@@ -100,10 +94,10 @@ public class AccountBean implements Serializable {
     public String doSignup() {
         // Does the login already exists ?
         if (em.createNamedQuery(User.FIND_BY_LOGIN, User.class).setParameter("login", user.getLogin())
-                .getResultList().size() > 0) {
+            .getResultList().size() > 0) {
             facesContext.addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Login already exists " + user.getLogin(),
-                            "You must choose a different login"));
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "Login already exists " + user.getLogin(),
+                    "You must choose a different login"));
             return null;
         }
 
@@ -112,7 +106,7 @@ public class AccountBean implements Serializable {
         em.persist(user);
         resetPasswords();
         facesContext.addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Hi " + user.getFirstName(), "Welcome to this website"));
+            new FacesMessage(FacesMessage.SEVERITY_INFO, "Hi " + user.getFirstName(), "Welcome to this website"));
         loggedIn = true;
         if (user.getRole().equals(UserRole.ADMIN))
             admin = true;
@@ -140,11 +134,11 @@ public class AccountBean implements Serializable {
             // The user is now logged in
             loggedIn = true;
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome back " + user.getFirstName(),
-                    "You can now browse the catalog"));
+                "You can now browse the catalog"));
             return "/main";
         } catch (NoResultException e) {
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Wrong user/password",
-                    "Check your inputs or ask for a new password"));
+                "Check your inputs or ask for a new password"));
             return null;
         }
     }
@@ -179,12 +173,12 @@ public class AccountBean implements Serializable {
             user.setPassword(PasswordUtils.digestPassword(temporaryPassword));
             em.merge(user);
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Email sent",
-                    "An email has been sent to " + user.getEmail() + " with temporary password :" + temporaryPassword));
+                "An email has been sent to " + user.getEmail() + " with temporary password :" + temporaryPassword));
             // send an email with the password "dummyPassword"
             return doLogout();
         } catch (NoResultException e) {
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Unknown email",
-                    "This email address is unknonw in our system"));
+                "This email address is unknonw in our system"));
             return null;
         }
     }
@@ -195,8 +189,8 @@ public class AccountBean implements Serializable {
         em.merge(user);
         resetPasswords();
         facesContext.addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Profile has been updated for " + user.getFirstName(),
-                        null));
+            new FacesMessage(FacesMessage.SEVERITY_INFO, "Profile has been updated for " + user.getFirstName(),
+                null));
         return null;
     }
 

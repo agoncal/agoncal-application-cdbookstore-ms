@@ -3,7 +3,10 @@ package org.agoncal.application.cdbookstore.rest;
 import org.agoncal.application.cdbookstore.model.CD;
 
 import javax.inject.Inject;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.OptimisticLockException;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -37,9 +40,9 @@ public class CDEndpoint {
     public Response create(CD entity) {
         em.persist(entity);
         return Response.created(
-                UriBuilder.fromResource(CDEndpoint.class)
-                        .path(String.valueOf(entity.getId())).build())
-                .build();
+            UriBuilder.fromResource(CDEndpoint.class)
+                .path(String.valueOf(entity.getId())).build())
+            .build();
     }
 
     @DELETE
@@ -58,9 +61,9 @@ public class CDEndpoint {
     @Produces({"application/xml", "application/json"})
     public Response findById(@PathParam("id") Long id) {
         TypedQuery<CD> findByIdQuery = em
-                .createQuery(
-                        "SELECT DISTINCT c FROM CD c LEFT JOIN FETCH c.label LEFT JOIN FETCH c.musicians LEFT JOIN FETCH c.genre WHERE c.id = :entityId ORDER BY c.id",
-                        CD.class);
+            .createQuery(
+                "SELECT DISTINCT c FROM CD c LEFT JOIN FETCH c.label LEFT JOIN FETCH c.musicians LEFT JOIN FETCH c.genre WHERE c.id = :entityId ORDER BY c.id",
+                CD.class);
         findByIdQuery.setParameter("entityId", id);
         CD entity;
         try {
@@ -79,9 +82,9 @@ public class CDEndpoint {
     public List<CD> listAll(@QueryParam("start") Integer startPosition,
                             @QueryParam("max") Integer maxResult) {
         TypedQuery<CD> findAllQuery = em
-                .createQuery(
-                        "SELECT DISTINCT c FROM CD c LEFT JOIN FETCH c.label LEFT JOIN FETCH c.musicians LEFT JOIN FETCH c.genre ORDER BY c.id",
-                        CD.class);
+            .createQuery(
+                "SELECT DISTINCT c FROM CD c LEFT JOIN FETCH c.label LEFT JOIN FETCH c.musicians LEFT JOIN FETCH c.genre ORDER BY c.id",
+                CD.class);
         if (startPosition != null) {
             findAllQuery.setFirstResult(startPosition);
         }
@@ -112,7 +115,7 @@ public class CDEndpoint {
             entity = em.merge(entity);
         } catch (OptimisticLockException e) {
             return Response.status(Response.Status.CONFLICT)
-                    .entity(e.getEntity()).build();
+                .entity(e.getEntity()).build();
         }
 
         return Response.noContent().build();

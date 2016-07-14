@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import java.io.File;
-import java.io.StringWriter;
 import java.util.List;
 import java.util.logging.Logger;
 

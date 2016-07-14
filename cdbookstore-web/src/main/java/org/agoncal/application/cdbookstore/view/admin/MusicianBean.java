@@ -127,7 +127,7 @@ public class MusicianBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class MusicianBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -182,18 +182,18 @@ public class MusicianBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Musician> root = countCriteria.from(Musician.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Musician> criteria = builder.createQuery(Musician.class);
         root = criteria.from(Musician.class);
         TypedQuery<Musician> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -205,20 +205,20 @@ public class MusicianBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("firstName")),
-                    '%' + firstName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("firstName")),
+                '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("lastName")),
-                    '%' + lastName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("lastName")),
+                '%' + lastName.toLowerCase() + '%'));
         }
         String bio = this.example.getBio();
         if (bio != null && !"".equals(bio)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("bio")),
-                    '%' + bio.toLowerCase() + '%'));
+                builder.lower(root.<String>get("bio")),
+                '%' + bio.toLowerCase() + '%'));
         }
         Integer age = this.example.getAge();
         if (age != null && age.intValue() != 0) {
@@ -227,8 +227,8 @@ public class MusicianBean implements Serializable {
         String preferredInstrument = this.example.getPreferredInstrument();
         if (preferredInstrument != null && !"".equals(preferredInstrument)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("preferredInstrument")),
-                    '%' + preferredInstrument.toLowerCase() + '%'));
+                builder.lower(root.<String>get("preferredInstrument")),
+                '%' + preferredInstrument.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -249,9 +249,9 @@ public class MusicianBean implements Serializable {
     public List<Musician> getAll() {
 
         CriteriaQuery<Musician> criteria = this.entityManager
-                .getCriteriaBuilder().createQuery(Musician.class);
+            .getCriteriaBuilder().createQuery(Musician.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Musician.class))).getResultList();
+            criteria.select(criteria.from(Musician.class))).getResultList();
     }
 
    /*
@@ -261,7 +261,7 @@ public class MusicianBean implements Serializable {
     public Converter getConverter() {
 
         final MusicianBean ejbProxy = this.sessionContext
-                .getBusinessObject(MusicianBean.class);
+            .getBusinessObject(MusicianBean.class);
 
         return new Converter() {
 

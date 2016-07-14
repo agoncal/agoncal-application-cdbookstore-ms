@@ -127,7 +127,7 @@ public class CountryBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class CountryBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -182,18 +182,18 @@ public class CountryBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Country> root = countCriteria.from(Country.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Country> criteria = builder.createQuery(Country.class);
         root = criteria.from(Country.class);
         TypedQuery<Country> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -205,32 +205,32 @@ public class CountryBean implements Serializable {
         String isoCode = this.example.getIsoCode();
         if (isoCode != null && !"".equals(isoCode)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("isoCode")),
-                    '%' + isoCode.toLowerCase() + '%'));
+                builder.lower(root.<String>get("isoCode")),
+                '%' + isoCode.toLowerCase() + '%'));
         }
         String name = this.example.getName();
         if (name != null && !"".equals(name)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("name")),
-                    '%' + name.toLowerCase() + '%'));
+                builder.lower(root.<String>get("name")),
+                '%' + name.toLowerCase() + '%'));
         }
         String printableName = this.example.getPrintableName();
         if (printableName != null && !"".equals(printableName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("printableName")),
-                    '%' + printableName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("printableName")),
+                '%' + printableName.toLowerCase() + '%'));
         }
         String iso3 = this.example.getIso3();
         if (iso3 != null && !"".equals(iso3)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("iso3")),
-                    '%' + iso3.toLowerCase() + '%'));
+                builder.lower(root.<String>get("iso3")),
+                '%' + iso3.toLowerCase() + '%'));
         }
         String numcode = this.example.getNumcode();
         if (numcode != null && !"".equals(numcode)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("numcode")),
-                    '%' + numcode.toLowerCase() + '%'));
+                builder.lower(root.<String>get("numcode")),
+                '%' + numcode.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -251,9 +251,9 @@ public class CountryBean implements Serializable {
     public List<Country> getAll() {
 
         CriteriaQuery<Country> criteria = this.entityManager
-                .getCriteriaBuilder().createQuery(Country.class);
+            .getCriteriaBuilder().createQuery(Country.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Country.class))).getResultList();
+            criteria.select(criteria.from(Country.class))).getResultList();
     }
 
    /*
@@ -263,7 +263,7 @@ public class CountryBean implements Serializable {
     public Converter getConverter() {
 
         final CountryBean ejbProxy = this.sessionContext
-                .getBusinessObject(CountryBean.class);
+            .getBusinessObject(CountryBean.class);
 
         return new Converter() {
 

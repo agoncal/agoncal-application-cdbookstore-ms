@@ -30,16 +30,16 @@ public class MusicianBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(MusicianBean.class)
-                .addClass(Musician.class)
-                .addClass(Artist.class)
-                .addClass(CD.class)
-                .addClass(Item.class)
-                .addClass(Genre.class)
-                .addClass(Label.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(MusicianBean.class)
+            .addClass(Musician.class)
+            .addClass(Artist.class)
+            .addClass(CD.class)
+            .addClass(Item.class)
+            .addClass(Genre.class)
+            .addClass(Label.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -86,6 +86,6 @@ public class MusicianBeanTest {
         musicianBean.setExample(example);
         musicianBean.paginate();
         assertTrue((musicianBean.getPageItems().size() == musicianBean.getPageSize())
-                || (musicianBean.getPageItems().size() == musicianBean.getCount()));
+            || (musicianBean.getPageItems().size() == musicianBean.getCount()));
     }
 }

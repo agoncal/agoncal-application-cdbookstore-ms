@@ -31,11 +31,11 @@ public class CountryBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(CountryBean.class)
-                .addClass(Country.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(CountryBean.class)
+            .addClass(Country.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -85,6 +85,6 @@ public class CountryBeanTest {
         countryBean.setExample(example);
         countryBean.paginate();
         assertTrue((countryBean.getPageItems().size() == countryBean.getPageSize())
-                || (countryBean.getPageItems().size() == countryBean.getCount()));
+            || (countryBean.getPageItems().size() == countryBean.getCount()));
     }
 }

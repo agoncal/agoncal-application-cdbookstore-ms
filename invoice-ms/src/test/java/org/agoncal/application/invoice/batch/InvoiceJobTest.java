@@ -40,17 +40,17 @@ public class InvoiceJobTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Invoice.class)
-                .addClass(InvoiceLine.class)
-                .addClass(InvoiceSummary.class)
-                .addClass(InvoiceSummaries.class)
-                .addClass(InvoiceReader.class)
-                .addClass(InvoiceProcessor.class)
-                .addClass(InvoiceWriter.class)
-                .addPackage(ResourceProducer.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsResource("import_h2.sql", "import_h2.sql")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .addClass(Invoice.class)
+            .addClass(InvoiceLine.class)
+            .addClass(InvoiceSummary.class)
+            .addClass(InvoiceSummaries.class)
+            .addClass(InvoiceReader.class)
+            .addClass(InvoiceProcessor.class)
+            .addClass(InvoiceWriter.class)
+            .addPackage(ResourceProducer.class.getPackage())
+            .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+            .addAsResource("import_h2.sql", "import_h2.sql")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -64,7 +64,8 @@ public class InvoiceJobTest {
         Assert.assertNotNull(invoiceWriter);
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void should_process_summary() throws Exception {
         List<Invoice> invoices = (List<Invoice>) invoiceReader.readItem();
         Assert.assertEquals(12, invoices.size());

@@ -36,6 +36,12 @@ public class InvoiceService {
     // =          Business methods          =
     // ======================================
 
+    private static Float round(Float d) {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
+    }
+
     public Invoice persist(Invoice invoice) {
         invoice.setInvoiceDate(new Date());
         invoice.setVatRate(vatRate);
@@ -87,11 +93,5 @@ public class InvoiceService {
     public TypedQuery<Invoice> getListAllQuery() {
         CriteriaQuery<Invoice> criteria = em.getCriteriaBuilder().createQuery(Invoice.class);
         return em.createQuery(criteria.select(criteria.from(Invoice.class)));
-    }
-
-    private static Float round(Float d) {
-        BigDecimal bd = new BigDecimal(Float.toString(d));
-        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
-        return bd.floatValue();
     }
 }

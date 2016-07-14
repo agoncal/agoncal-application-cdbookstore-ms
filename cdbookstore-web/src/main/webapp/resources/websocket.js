@@ -2,9 +2,15 @@ var wsUri = "ws://" + document.location.hostname + ":" + document.location.port 
 var websocket = new WebSocket(wsUri);
 
 var username;
-websocket.onopen = function(evt) { onOpen(evt) };
-websocket.onmessage = function(evt) { onMessage(evt) };
-websocket.onerror = function(evt) { onError(evt) };
+websocket.onopen = function (evt) {
+    onOpen(evt)
+};
+websocket.onmessage = function (evt) {
+    onMessage(evt)
+};
+websocket.onerror = function (evt) {
+    onError(evt)
+};
 var output = document.getElementById("output");
 
 

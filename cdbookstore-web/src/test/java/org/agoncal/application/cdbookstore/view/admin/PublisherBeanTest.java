@@ -30,11 +30,11 @@ public class PublisherBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(PublisherBean.class)
-                .addClass(Publisher.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(PublisherBean.class)
+            .addClass(Publisher.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -80,6 +80,6 @@ public class PublisherBeanTest {
         publisherBean.setExample(example);
         publisherBean.paginate();
         assertTrue((publisherBean.getPageItems().size() == publisherBean.getPageSize())
-                || (publisherBean.getPageItems().size() == publisherBean.getCount()));
+            || (publisherBean.getPageItems().size() == publisherBean.getCount()));
     }
 }

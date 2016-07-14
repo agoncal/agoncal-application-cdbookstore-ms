@@ -30,11 +30,11 @@ public class GenreBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(GenreBean.class)
-                .addClass(Genre.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(GenreBean.class)
+            .addClass(Genre.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -80,6 +80,6 @@ public class GenreBeanTest {
         genreBean.setExample(example);
         genreBean.paginate();
         assertTrue((genreBean.getPageItems().size() == genreBean.getPageSize())
-                || (genreBean.getPageItems().size() == genreBean.getCount()));
+            || (genreBean.getPageItems().size() == genreBean.getCount()));
     }
 }

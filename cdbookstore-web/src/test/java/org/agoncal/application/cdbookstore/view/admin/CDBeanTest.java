@@ -30,16 +30,16 @@ public class CDBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(CDBean.class)
-                .addClass(CD.class)
-                .addClass(Item.class)
-                .addClass(Genre.class)
-                .addClass(Label.class)
-                .addClass(Artist.class)
-                .addClass(Musician.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(CDBean.class)
+            .addClass(CD.class)
+            .addClass(Item.class)
+            .addClass(Genre.class)
+            .addClass(Label.class)
+            .addClass(Artist.class)
+            .addClass(Musician.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -85,6 +85,6 @@ public class CDBeanTest {
         cdBean.setExample(example);
         cdBean.paginate();
         assertTrue((cdBean.getPageItems().size() == cdBean.getPageSize())
-                || (cdBean.getPageItems().size() == cdBean.getCount()));
+            || (cdBean.getPageItems().size() == cdBean.getCount()));
     }
 }

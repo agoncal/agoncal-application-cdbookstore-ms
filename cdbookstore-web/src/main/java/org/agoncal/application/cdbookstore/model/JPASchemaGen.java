@@ -8,7 +8,7 @@ import java.util.logging.Logger;
  *         Training - Beginning with The Java EE 7 Platform
  *         http://www.antoniogoncalves.org
  *         --
- * For this class to work, enable the EclipseLink and Derby dependencies in the pom.xml
+ *         For this class to work, enable the EclipseLink and Derby dependencies in the pom.xml
  */
 public class JPASchemaGen {
 

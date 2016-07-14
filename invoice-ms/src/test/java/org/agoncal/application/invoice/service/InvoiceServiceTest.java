@@ -2,7 +2,6 @@ package org.agoncal.application.invoice.service;
 
 import org.agoncal.application.invoice.model.Invoice;
 import org.agoncal.application.invoice.model.InvoiceLine;
-import org.agoncal.application.invoice.service.InvoiceService;
 import org.agoncal.application.invoice.util.ResourceProducer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -35,12 +34,12 @@ public class InvoiceServiceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Invoice.class)
-                .addClass(InvoiceLine.class)
-                .addClass(InvoiceService.class)
-                .addPackage(ResourceProducer.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .addClass(Invoice.class)
+            .addClass(InvoiceLine.class)
+            .addClass(InvoiceService.class)
+            .addPackage(ResourceProducer.class.getPackage())
+            .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================

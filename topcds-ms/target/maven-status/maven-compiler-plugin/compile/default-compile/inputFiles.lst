@@ -1,1 +1,3 @@
-/Users/antoniombp/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/topcds-ms/src/main/java/org/agoncal/sample/javaee/enoughappserver/topcds/servlet/CDServlet.java
+/Users/agoncal/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/topcds-ms/src/main/java/org/agoncal/application/topcds/rest/RestApplication.java
+/Users/agoncal/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/topcds-ms/src/main/java/org/agoncal/application/topcds/rest/TopCDsEndpoint.java
+/Users/agoncal/Documents/Code/Agoncal/agoncal-application-cdbookstore-ms/topcds-ms/src/main/java/org/agoncal/application/topcds/utils/ResourceProducer.java

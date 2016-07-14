@@ -127,7 +127,7 @@ public class ItemBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class ItemBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -182,18 +182,18 @@ public class ItemBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Item> root = countCriteria.from(Item.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Item> criteria = builder.createQuery(Item.class);
         root = criteria.from(Item.class);
         TypedQuery<Item> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -205,14 +205,14 @@ public class ItemBean implements Serializable {
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("title")),
-                    '%' + title.toLowerCase() + '%'));
+                builder.lower(root.<String>get("title")),
+                '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("description")),
-                    '%' + description.toLowerCase() + '%'));
+                builder.lower(root.<String>get("description")),
+                '%' + description.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -233,9 +233,9 @@ public class ItemBean implements Serializable {
     public List<Item> getAll() {
 
         CriteriaQuery<Item> criteria = this.entityManager.getCriteriaBuilder()
-                .createQuery(Item.class);
+            .createQuery(Item.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Item.class))).getResultList();
+            criteria.select(criteria.from(Item.class))).getResultList();
     }
 
    /*
@@ -245,7 +245,7 @@ public class ItemBean implements Serializable {
     public Converter getConverter() {
 
         final ItemBean ejbProxy = this.sessionContext
-                .getBusinessObject(ItemBean.class);
+            .getBusinessObject(ItemBean.class);
 
         return new Converter() {
 

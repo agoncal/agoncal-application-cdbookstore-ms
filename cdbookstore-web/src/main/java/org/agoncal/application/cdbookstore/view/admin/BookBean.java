@@ -149,7 +149,7 @@ public class BookBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -188,18 +188,18 @@ public class BookBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Book> root = countCriteria.from(Book.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Book> criteria = builder.createQuery(Book.class);
         root = criteria.from(Book.class);
         TypedQuery<Book> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -211,20 +211,20 @@ public class BookBean implements Serializable {
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("title")),
-                    '%' + title.toLowerCase() + '%'));
+                builder.lower(root.<String>get("title")),
+                '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("description")),
-                    '%' + description.toLowerCase() + '%'));
+                builder.lower(root.<String>get("description")),
+                '%' + description.toLowerCase() + '%'));
         }
         String isbn = this.example.getIsbn();
         if (isbn != null && !"".equals(isbn)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("isbn")),
-                    '%' + isbn.toLowerCase() + '%'));
+                builder.lower(root.<String>get("isbn")),
+                '%' + isbn.toLowerCase() + '%'));
         }
         Integer nbOfPage = this.example.getNbOfPage();
         if (nbOfPage != null && nbOfPage.intValue() != 0) {
@@ -253,9 +253,9 @@ public class BookBean implements Serializable {
     public List<Book> getAll() {
 
         CriteriaQuery<Book> criteria = this.entityManager.getCriteriaBuilder()
-                .createQuery(Book.class);
+            .createQuery(Book.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Book.class))).getResultList();
+            criteria.select(criteria.from(Book.class))).getResultList();
     }
 
    /*
@@ -265,7 +265,7 @@ public class BookBean implements Serializable {
     public Converter getConverter() {
 
         final BookBean ejbProxy = this.sessionContext
-                .getBusinessObject(BookBean.class);
+            .getBusinessObject(BookBean.class);
 
         return new Converter() {
 

@@ -4,7 +4,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+>
 <f:view contentType="text/html" encoding="UTF-8">
 
     <!--HEAD-->
@@ -88,12 +88,14 @@
                                 <li class="dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">#{accountBean.user.fullName} <span
-                                            class="caret"></span></a>
+                                        class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><h:link outcome="/account/profile.xhtml" value="Profile"/></li>
                                         <li>
-                                            <h:link outcome="/account/chat.xhtml" value="Need some help" rendered="#{!accountBean.admin}"/>
-                                            <h:link outcome="/account/chat.xhtml" value="Help customers" rendered="#{accountBean.admin}"/>
+                                            <h:link outcome="/account/chat.xhtml" value="Need some help"
+                                                    rendered="#{!accountBean.admin}"/>
+                                            <h:link outcome="/account/chat.xhtml" value="Help customers"
+                                                    rendered="#{accountBean.admin}"/>
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li><h:commandLink action="#{accountBean.doLogout}" value="Logout"/></li>

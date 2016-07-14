@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.net.URI;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -44,20 +42,20 @@ public class BookEndpointTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return ShrinkWrap
-                .create(WebArchive.class)
-                .addClass(RestApplication.class)
-                .addClass(BookEndpoint.class)
-                .addClass(Book.class)
-                .addClass(Item.class)
-                .addClass(Language.class)
-                .addClass(LanguageConverter.class)
-                .addClass(Category.class)
-                .addClass(Publisher.class)
-                .addClass(Artist.class)
-                .addClass(Author.class)
-                .addClass(ResourceProducer.class)
-                .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(WebArchive.class)
+            .addClass(RestApplication.class)
+            .addClass(BookEndpoint.class)
+            .addClass(Book.class)
+            .addClass(Item.class)
+            .addClass(Language.class)
+            .addClass(LanguageConverter.class)
+            .addClass(Category.class)
+            .addClass(Publisher.class)
+            .addClass(Artist.class)
+            .addClass(Author.class)
+            .addClass(ResourceProducer.class)
+            .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
+            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -71,7 +69,8 @@ public class BookEndpointTest {
         assertEquals(Response.Status.OK.getStatusCode(), target.request(MediaType.APPLICATION_XML).get().getStatus());
     }
 
-    @Test @Ignore
+    @Test
+    @Ignore
     public void shouldCRUDBooks() throws IOException {
 
         Client client = ClientBuilder.newClient();

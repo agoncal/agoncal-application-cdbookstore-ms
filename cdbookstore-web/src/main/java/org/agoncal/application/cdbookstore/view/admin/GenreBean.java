@@ -127,7 +127,7 @@ public class GenreBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class GenreBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -182,18 +182,18 @@ public class GenreBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Genre> root = countCriteria.from(Genre.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Genre> criteria = builder.createQuery(Genre.class);
         root = criteria.from(Genre.class);
         TypedQuery<Genre> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -205,8 +205,8 @@ public class GenreBean implements Serializable {
         String name = this.example.getName();
         if (name != null && !"".equals(name)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("name")),
-                    '%' + name.toLowerCase() + '%'));
+                builder.lower(root.<String>get("name")),
+                '%' + name.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -227,9 +227,9 @@ public class GenreBean implements Serializable {
     public List<Genre> getAll() {
 
         CriteriaQuery<Genre> criteria = this.entityManager.getCriteriaBuilder()
-                .createQuery(Genre.class);
+            .createQuery(Genre.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Genre.class))).getResultList();
+            criteria.select(criteria.from(Genre.class))).getResultList();
     }
 
    /*
@@ -239,7 +239,7 @@ public class GenreBean implements Serializable {
     public Converter getConverter() {
 
         final GenreBean ejbProxy = this.sessionContext
-                .getBusinessObject(GenreBean.class);
+            .getBusinessObject(GenreBean.class);
 
         return new Converter() {
 

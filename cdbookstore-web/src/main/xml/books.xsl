@@ -60,7 +60,7 @@
             <xsl:text>, </xsl:text>
 
             <xsl:if test="ItemAttributes/PublicationDate">to_date('<xsl:value-of
-                    select="normalize-space(ItemAttributes/PublicationDate)"/>', 'YYYY-MM-DD')
+                select="normalize-space(ItemAttributes/PublicationDate)"/>', 'YYYY-MM-DD')
             </xsl:if>
             <xsl:if test="not(ItemAttributes/PublicationDate)">null</xsl:if>
             <xsl:text>, </xsl:text>

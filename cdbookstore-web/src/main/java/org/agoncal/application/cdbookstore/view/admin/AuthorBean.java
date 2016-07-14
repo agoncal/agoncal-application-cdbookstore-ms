@@ -128,7 +128,7 @@ public class AuthorBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -144,7 +144,7 @@ public class AuthorBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -183,18 +183,18 @@ public class AuthorBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<Author> root = countCriteria.from(Author.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<Author> criteria = builder.createQuery(Author.class);
         root = criteria.from(Author.class);
         TypedQuery<Author> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -206,20 +206,20 @@ public class AuthorBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("firstName")),
-                    '%' + firstName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("firstName")),
+                '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("lastName")),
-                    '%' + lastName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("lastName")),
+                '%' + lastName.toLowerCase() + '%'));
         }
         String bio = this.example.getBio();
         if (bio != null && !"".equals(bio)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("bio")),
-                    '%' + bio.toLowerCase() + '%'));
+                builder.lower(root.<String>get("bio")),
+                '%' + bio.toLowerCase() + '%'));
         }
         Integer age = this.example.getAge();
         if (age != null && age.intValue() != 0) {
@@ -228,7 +228,7 @@ public class AuthorBean implements Serializable {
         Language preferredLanguage = this.example.getPreferredLanguage();
         if (preferredLanguage != null) {
             predicatesList.add(builder.equal(root.get("preferredLanguage"),
-                    preferredLanguage));
+                preferredLanguage));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -249,9 +249,9 @@ public class AuthorBean implements Serializable {
     public List<Author> getAll() {
 
         CriteriaQuery<Author> criteria = this.entityManager
-                .getCriteriaBuilder().createQuery(Author.class);
+            .getCriteriaBuilder().createQuery(Author.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(Author.class))).getResultList();
+            criteria.select(criteria.from(Author.class))).getResultList();
     }
 
    /*
@@ -261,7 +261,7 @@ public class AuthorBean implements Serializable {
     public Converter getConverter() {
 
         final AuthorBean ejbProxy = this.sessionContext
-                .getBusinessObject(AuthorBean.class);
+            .getBusinessObject(AuthorBean.class);
 
         return new Converter() {
 

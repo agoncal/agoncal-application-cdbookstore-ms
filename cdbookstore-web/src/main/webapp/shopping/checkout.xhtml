@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -48,7 +48,8 @@
                 <h:outputText/>
                 <h:outputLabel for="zipcode" value="Zipcode:"/>
                 <h:panelGroup>
-                    <h:inputText id="zipcode" maxLength="10" required="true" value="#{shoppingCartBean.address.zipcode}"/>
+                    <h:inputText id="zipcode" maxLength="10" required="true"
+                                 value="#{shoppingCartBean.address.zipcode}"/>
                     <h:message for="zipcode" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
@@ -64,13 +65,15 @@
 
                 <h:outputLabel for="creditCardNumber" value="Credit Card Number:"/>
                 <h:panelGroup>
-                    <h:inputText id="creditCardNumber" maxLength="30" required="true" value="#{shoppingCartBean.creditCard.creditCardNumber}"/>
+                    <h:inputText id="creditCardNumber" maxLength="30" required="true"
+                                 value="#{shoppingCartBean.creditCard.creditCardNumber}"/>
                     <h:message for="creditCardNumber" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
                 <h:outputLabel for="creditCardType" value="Credit Card Type:"/>
                 <h:panelGroup>
-                    <h:selectOneMenu id="creditCardType" required="true" value="#{shoppingCartBean.creditCard.creditCardType}">
+                    <h:selectOneMenu id="creditCardType" required="true"
+                                     value="#{shoppingCartBean.creditCard.creditCardType}">
                         <f:selectItems value="#{shoppingCartBean.creditCardTypes}"/>
                     </h:selectOneMenu>
                     <h:message for="creditCardType" styleClass="error"/>
@@ -78,7 +81,8 @@
                 <h:outputText value="*"/>
                 <h:outputLabel for="creditCardExpDate" value="Credit Card Exp Date:"/>
                 <h:panelGroup>
-                    <h:inputText id="creditCardExpDate" maxLength="5" required="true" value="#{shoppingCartBean.creditCard.creditCardExpDate}"/>
+                    <h:inputText id="creditCardExpDate" maxLength="5" required="true"
+                                 value="#{shoppingCartBean.creditCard.creditCardExpDate}"/>
                     <h:message for="creditCardExpDate" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
@@ -86,7 +90,8 @@
             </h:panelGrid>
 
             <div class="buttons">
-                <h:commandLink action="#{shoppingCartBean.confirmation}" styleClass="btn btn-primary" value="Check Out"/>
+                <h:commandLink action="#{shoppingCartBean.confirmation}" styleClass="btn btn-primary"
+                               value="Check Out"/>
             </div>
 
         </h:form>

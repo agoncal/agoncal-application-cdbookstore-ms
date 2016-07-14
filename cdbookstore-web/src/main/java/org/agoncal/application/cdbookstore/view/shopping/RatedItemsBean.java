@@ -30,21 +30,18 @@ public class RatedItemsBean {
     // =          Injection Points          =
     // ======================================
 
+    List<Item> topRatedItems;
+    Set<Item> randomItems = new HashSet<>();
     @Inject
     private FacesContext facesContext;
-
-    @Inject
-    private Logger logger;
-
-    @Inject
-    private EntityManager em;
 
     // ======================================
     // =             Attributes             =
     // ======================================
-
-    List<Item> topRatedItems;
-    Set<Item> randomItems = new HashSet<>();
+    @Inject
+    private Logger logger;
+    @Inject
+    private EntityManager em;
 
     // ======================================
     // =         Lifecycle methods          =

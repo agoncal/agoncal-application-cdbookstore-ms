@@ -34,14 +34,14 @@ public class AuthorBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(AuthorBean.class)
-                .addClass(Author.class)
-                .addClass(Artist.class)
-                .addClass(Language.class)
-                .addClass(LanguageConverter.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(AuthorBean.class)
+            .addClass(Author.class)
+            .addClass(Artist.class)
+            .addClass(Language.class)
+            .addClass(LanguageConverter.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -89,6 +89,6 @@ public class AuthorBeanTest {
         authorBean.setExample(example);
         authorBean.paginate();
         assertTrue((authorBean.getPageItems().size() == authorBean.getPageSize())
-                || (authorBean.getPageItems().size() == authorBean.getCount()));
+            || (authorBean.getPageItems().size() == authorBean.getCount()));
     }
 }

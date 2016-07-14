@@ -54,9 +54,9 @@ public class BookEndpoint {
     public Response create(Book entity) {
         em.persist(entity);
         return Response.created(
-                UriBuilder.fromResource(BookEndpoint.class)
-                        .path(String.valueOf(entity.getId())).build())
-                .build();
+            UriBuilder.fromResource(BookEndpoint.class)
+                .path(String.valueOf(entity.getId())).build())
+            .build();
     }
 
     @DELETE
@@ -75,9 +75,9 @@ public class BookEndpoint {
     @Produces({"application/xml", "application/json"})
     public Response findById(@PathParam("id") Long id) {
         TypedQuery<Book> findByIdQuery = em
-                .createQuery(
-                        "SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.category LEFT JOIN FETCH b.authors LEFT JOIN FETCH b.publisher WHERE b.id = :entityId ORDER BY b.id",
-                        Book.class);
+            .createQuery(
+                "SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.category LEFT JOIN FETCH b.authors LEFT JOIN FETCH b.publisher WHERE b.id = :entityId ORDER BY b.id",
+                Book.class);
         findByIdQuery.setParameter("entityId", id);
         Book entity;
         try {
@@ -96,9 +96,9 @@ public class BookEndpoint {
     public List<Book> listAll(@QueryParam("start") Integer startPosition,
                               @QueryParam("max") Integer maxResult) {
         TypedQuery<Book> findAllQuery = em
-                .createQuery(
-                        "SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.category LEFT JOIN FETCH b.authors LEFT JOIN FETCH b.publisher ORDER BY b.id",
-                        Book.class);
+            .createQuery(
+                "SELECT DISTINCT b FROM Book b LEFT JOIN FETCH b.category LEFT JOIN FETCH b.authors LEFT JOIN FETCH b.publisher ORDER BY b.id",
+                Book.class);
         if (startPosition != null) {
             findAllQuery.setFirstResult(startPosition);
         }
@@ -129,7 +129,7 @@ public class BookEndpoint {
             entity = em.merge(entity);
         } catch (OptimisticLockException e) {
             return Response.status(Response.Status.CONFLICT)
-                    .entity(e.getEntity()).build();
+                .entity(e.getEntity()).build();
         }
 
         return Response.noContent().build();

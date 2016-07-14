@@ -39,18 +39,18 @@ public class CDEndpointTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return ShrinkWrap
-                .create(WebArchive.class)
-                .addClass(RestApplication.class)
-                .addClass(CDEndpoint.class)
-                .addClass(CD.class)
-                .addClass(Item.class)
-                .addClass(Genre.class)
-                .addClass(Label.class)
-                .addClass(Artist.class)
-                .addClass(Musician.class)
-                .addClass(ResourceProducer.class)
-                .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(WebArchive.class)
+            .addClass(RestApplication.class)
+            .addClass(CDEndpoint.class)
+            .addClass(CD.class)
+            .addClass(Item.class)
+            .addClass(Genre.class)
+            .addClass(Label.class)
+            .addClass(Artist.class)
+            .addClass(Musician.class)
+            .addClass(ResourceProducer.class)
+            .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
+            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================

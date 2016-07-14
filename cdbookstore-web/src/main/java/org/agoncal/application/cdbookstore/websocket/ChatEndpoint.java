@@ -33,11 +33,11 @@ public class ChatEndpoint {
         // ...
     }
 
-        @OnMessage
+    @OnMessage
     public void message(String message, Session client) throws Exception {
-            System.out.println("######################");
-            System.out.println("######################");
-            System.out.println("######################");
+        System.out.println("######################");
+        System.out.println("######################");
+        System.out.println("######################");
         logger.info("message: " + message);
         for (Session peer : client.getOpenSessions()) {
             peer.getBasicRemote().sendText(message);

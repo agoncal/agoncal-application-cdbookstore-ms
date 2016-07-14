@@ -127,7 +127,7 @@ public class UserBean implements Serializable {
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class UserBean implements Serializable {
             return "search?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(e.getMessage()));
+                new FacesMessage(e.getMessage()));
             return null;
         }
     }
@@ -182,18 +182,18 @@ public class UserBean implements Serializable {
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         Root<User> root = countCriteria.from(User.class);
         countCriteria = countCriteria.select(builder.count(root)).where(
-                getSearchPredicates(root));
+            getSearchPredicates(root));
         this.count = this.entityManager.createQuery(countCriteria)
-                .getSingleResult();
+            .getSingleResult();
 
         // Populate this.pageItems
 
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         root = criteria.from(User.class);
         TypedQuery<User> query = this.entityManager.createQuery(criteria
-                .select(root).where(getSearchPredicates(root)));
+            .select(root).where(getSearchPredicates(root)));
         query.setFirstResult(this.page * getPageSize()).setMaxResults(
-                getPageSize());
+            getPageSize());
         this.pageItems = query.getResultList();
     }
 
@@ -205,32 +205,32 @@ public class UserBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("firstName")),
-                    '%' + firstName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("firstName")),
+                '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("lastName")),
-                    '%' + lastName.toLowerCase() + '%'));
+                builder.lower(root.<String>get("lastName")),
+                '%' + lastName.toLowerCase() + '%'));
         }
         String telephone = this.example.getTelephone();
         if (telephone != null && !"".equals(telephone)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("telephone")),
-                    '%' + telephone.toLowerCase() + '%'));
+                builder.lower(root.<String>get("telephone")),
+                '%' + telephone.toLowerCase() + '%'));
         }
         String email = this.example.getEmail();
         if (email != null && !"".equals(email)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("email")),
-                    '%' + email.toLowerCase() + '%'));
+                builder.lower(root.<String>get("email")),
+                '%' + email.toLowerCase() + '%'));
         }
         String login = this.example.getLogin();
         if (login != null && !"".equals(login)) {
             predicatesList.add(builder.like(
-                    builder.lower(root.<String>get("login")),
-                    '%' + login.toLowerCase() + '%'));
+                builder.lower(root.<String>get("login")),
+                '%' + login.toLowerCase() + '%'));
         }
 
         return predicatesList.toArray(new Predicate[predicatesList.size()]);
@@ -251,9 +251,9 @@ public class UserBean implements Serializable {
     public List<User> getAll() {
 
         CriteriaQuery<User> criteria = this.entityManager.getCriteriaBuilder()
-                .createQuery(User.class);
+            .createQuery(User.class);
         return this.entityManager.createQuery(
-                criteria.select(criteria.from(User.class))).getResultList();
+            criteria.select(criteria.from(User.class))).getResultList();
     }
 
    /*
@@ -263,7 +263,7 @@ public class UserBean implements Serializable {
     public Converter getConverter() {
 
         final UserBean ejbProxy = this.sessionContext
-                .getBusinessObject(UserBean.class);
+            .getBusinessObject(UserBean.class);
 
         return new Converter() {
 

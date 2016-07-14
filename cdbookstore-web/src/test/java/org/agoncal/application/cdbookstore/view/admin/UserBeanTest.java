@@ -33,13 +33,13 @@ public class UserBeanTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
-                .create(JavaArchive.class)
-                .addClass(UserBean.class)
-                .addClass(User.class)
-                .addClass(UserRole.class)
-                .addClass(PasswordUtils.class)
-                .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .create(JavaArchive.class)
+            .addClass(UserBean.class)
+            .addClass(User.class)
+            .addClass(UserRole.class)
+            .addClass(PasswordUtils.class)
+            .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     // ======================================
@@ -89,6 +89,6 @@ public class UserBeanTest {
         userBean.setExample(example);
         userBean.paginate();
         assertTrue((userBean.getPageItems().size() == userBean.getPageSize())
-                || (userBean.getPageItems().size() == userBean.getCount()));
+            || (userBean.getPageItems().size() == userBean.getCount()));
     }
 }

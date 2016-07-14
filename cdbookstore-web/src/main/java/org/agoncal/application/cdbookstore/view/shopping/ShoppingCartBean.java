@@ -80,7 +80,7 @@ public class ShoppingCartBean implements Serializable {
             cartItems.add(new ShoppingCartItem(item, 1));
 
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, item.getTitle() + " added to the shopping cart",
-                "You can now add more stuff if you want"));
+            "You can now add more stuff if you want"));
 
         return "/shopping/viewItem.xhtml?faces-redirect=true&includeViewParams=true";
     }
@@ -119,7 +119,7 @@ public class ShoppingCartBean implements Serializable {
 
         // Displaying the invoice creation
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Order created",
-                "You will receive a confirmation email"));
+            "You will receive a confirmation email"));
 
         return "/main";
     }

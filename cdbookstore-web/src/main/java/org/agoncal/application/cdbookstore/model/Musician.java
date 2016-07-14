@@ -66,7 +66,7 @@ public class Musician extends Artist {
         if (age != null)
             result += ", age: " + age;
         if (preferredInstrument != null
-                && !preferredInstrument.trim().isEmpty())
+            && !preferredInstrument.trim().isEmpty())
             result += ", preferredInstrument: " + preferredInstrument;
         return result;
     }
