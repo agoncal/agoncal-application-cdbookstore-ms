@@ -1,8 +1,6 @@
 package org.agoncal.application.topbooks.rest;
 
 import org.agoncal.application.topbooks.model.Book;
-import org.agoncal.application.topbooks.rest.RestApplication;
-import org.agoncal.application.topbooks.rest.TopBooksEndpoint;
 import org.agoncal.application.topbooks.utils.ResourceProducer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -47,6 +45,7 @@ public class TopBooksEndpointTest {
             .addClass(TopBooksEndpoint.class)
             .addClass(ResourceProducer.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
+            .addAsResource("import_h2.sql", "import_h2.sql")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 

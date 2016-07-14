@@ -35,7 +35,7 @@ public class BookMarshallerTest {
 
         Marshaller m = context.createMarshaller();
         m.marshal(book, writer);
-        System.out.println(writer.toString());
+        // System.out.println(writer.toString());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class BookMarshallerTest {
                 )
             )
         ).build();
-        System.out.println(jsonBook);
+        // System.out.println(jsonBook);
     }
 
     @Test
@@ -75,11 +75,11 @@ public class BookMarshallerTest {
             JsonArray array = reader.readArray();
             for (int i = 0; i < array.size(); i++) {
                 bookIds.add((long) array.getJsonObject(i).getInt("id"));
-                System.out.println(array.getJsonObject(i).getInt("id"));
-                System.out.println(array.getJsonObject(i).getString("title"));
+                // System.out.println(array.getJsonObject(i).getInt("id"));
+                // System.out.println(array.getJsonObject(i).getString("title"));
             }
         }
-        System.out.println(bookIds);
+        // System.out.println(bookIds);
         assertTrue(bookIds.size() > 0);
     }
 }

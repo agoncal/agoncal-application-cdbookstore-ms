@@ -23,7 +23,7 @@
         <version.bootstrap>3.3.6</version.bootstrap>
         <version.primefaces>6.0</version.primefaces>
         <version.primefaces.theme>1.0.10</version.primefaces.theme>
-        <version.resteasy>3.0.12.Final</version.resteasy>
+        <version.resteasy>3.0.18.Final</version.resteasy>
         <!-- Test -->
         <version.arquillian>1.1.11.Final</version.arquillian>
         <version.arquillian.wildfly.remote>8.2.1.Final</version.arquillian.wildfly.remote>
@@ -34,7 +34,7 @@
         <version.dependency.plugin>2.10</version.dependency.plugin>
         <version.failsafe.plugin>2.19.1</version.failsafe.plugin>
         <version.install.plugin>2.5.2</version.install.plugin>
-        <version.jar.plugin>2.6</version.jar.plugin>
+        <version.jar.plugin>3.0.2</version.jar.plugin>
         <version.surefire.plugin>2.19.1</version.surefire.plugin>
         <version.war.plugin>2.6</version.war.plugin>
         <version.processor.plugin>3.1.0</version.processor.plugin>
