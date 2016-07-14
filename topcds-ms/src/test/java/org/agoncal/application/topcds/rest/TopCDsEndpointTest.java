@@ -1,7 +1,5 @@
-package org.agoncal.application.topcds;
+package org.agoncal.application.topcds.rest;
 
-import org.agoncal.application.topcds.rest.RestApplication;
-import org.agoncal.application.topcds.rest.TopCDsEndpoint;
 import org.agoncal.application.topcds.utils.ResourceProducer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -10,6 +8,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
+import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
@@ -32,6 +32,9 @@ public class TopCDsEndpointTest {
 
     @ArquillianResource
     private URI baseURL;
+    private Client client;
+    private WebTarget webTarget;
+
 
     // ======================================
     // =         Deployment methods         =
@@ -48,13 +51,27 @@ public class TopCDsEndpointTest {
     }
 
     // ======================================
+    // =          Lifecycle methods         =
+    // ======================================
+
+    @Before
+    public void initWebTarget() {
+        client = ClientBuilder.newClient();
+        webTarget = client.target(baseURL);
+    }
+
+    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     public void should_be_deployed() {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL);
-        assertEquals(Response.Status.OK.getStatusCode(), target.request(MediaType.APPLICATION_JSON).get().getStatus());
+        assertEquals(Response.Status.OK.getStatusCode(), webTarget.request(MediaType.APPLICATION_JSON).get().getStatus());
+    }
+
+    @Test
+    public void should_have_five_items() {
+        String body = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+        assertThatJson(body).isArray().ofLength(5);
     }
 }
