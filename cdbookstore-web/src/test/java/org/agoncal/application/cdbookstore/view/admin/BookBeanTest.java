@@ -1,6 +1,8 @@
 package org.agoncal.application.cdbookstore.view.admin;
 
 import org.agoncal.application.cdbookstore.model.*;
+import org.agoncal.application.cdbookstore.util.IsbnGenerator;
+import org.agoncal.application.cdbookstore.util.NumberGenerator;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -40,6 +42,8 @@ public class BookBeanTest {
             .addClass(Publisher.class)
             .addClass(Artist.class)
             .addClass(Author.class)
+            .addClass(NumberGenerator.class)
+            .addClass(IsbnGenerator.class)
             .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
