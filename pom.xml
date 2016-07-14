@@ -46,23 +46,30 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- JAVA EE -->
             <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian}</version>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-7.0</artifactId>
+                <version>${version.javaee7}</version>
                 <type>pom</type>
-                <scope>import</scope>
+                <scope>provided</scope>
             </dependency>
+            <!-- OTHERS -->
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>1.0.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thedeanda</groupId>
+                <artifactId>lorem</artifactId>
+                <version>${version.lorem}</version>
+            </dependency>
+            <!-- WEB -->
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${version.bootstrap}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.primefaces</groupId>
@@ -74,34 +81,19 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${version.primefaces.theme}</version>
             </dependency>
+            <!-- TEST -->
             <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-7.0</artifactId>
-                <version>${version.javaee7}</version>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${version.arquillian}</version>
                 <type>pom</type>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-web-api</artifactId>
-                <version>7.0</version>
-                <scope>provided</scope>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
                 <version>${version.resteasy}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.json</artifactId>
-                <version>1.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.thedeanda</groupId>
-                <artifactId>lorem</artifactId>
-                <version>${version.lorem}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -186,7 +178,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version.surefire.plugin}</version>
                     <configuration>
-                        <skipTests>true</skipTests>
+                        <skipTests>false</skipTests>
                         <systemPropertyVariables>
                             <arquillian.launch>arquillian-wildfly-remote</arquillian.launch>
                         </systemPropertyVariables>

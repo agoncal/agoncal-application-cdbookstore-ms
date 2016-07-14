@@ -14,15 +14,30 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>topbooks</finalName>
+        <finalName>msTopBooks</finalName>
     </build>
 
     <profiles>
