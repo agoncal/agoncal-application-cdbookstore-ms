@@ -28,6 +28,8 @@
         <version.arquillian>1.1.11.Final</version.arquillian>
         <version.arquillian.wildfly.remote>8.2.1.Final</version.arquillian.wildfly.remote>
         <version.junit>4.12</version.junit>
+        <version.jsonunit>1.12.1</version.jsonunit>
+        <version.jackson>2.3.1</version.jackson>
         <!-- Plugins -->
         <version.clean.plugin>3.0.0</version.clean.plugin>
         <version.compiler.plugin>3.5.1</version.compiler.plugin>
@@ -110,13 +112,13 @@
             <dependency>
                 <groupId>net.javacrumbs.json-unit</groupId>
                 <artifactId>json-unit-fluent</artifactId>
-                <version>1.12.1</version>
+                <version>${version.jsonunit}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.3.1</version>
+                <version>${version.jackson}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
