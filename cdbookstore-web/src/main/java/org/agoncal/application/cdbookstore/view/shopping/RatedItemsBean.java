@@ -49,7 +49,7 @@ public class RatedItemsBean {
 
     @PostConstruct
     private void init() {
-        doFindTopRated();
+        doFindTopRatedCDs();
         doFindRandomThree();
 
     }
@@ -72,15 +72,15 @@ public class RatedItemsBean {
     }
 
     @Auditable
-    private void doFindTopRated() {
+    private void doFindTopRatedCDs() {
 
         Response response;
 
         // Tries on port 8080 if not 8085
         try {
-            response = ClientBuilder.newClient().target("http://localhost:8080/applicationToprated/toprateditems").request(MediaType.APPLICATION_JSON).get();
+            response = ClientBuilder.newClient().target("http://localhost:8080/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         } catch (Exception e) {
-            response = ClientBuilder.newClient().target("http://localhost:8085/applicationToprated/toprateditems").request(MediaType.APPLICATION_JSON).get();
+            response = ClientBuilder.newClient().target("http://localhost:8085/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         }
 
         if (response.getStatus() != Response.Status.OK.getStatusCode())
@@ -88,18 +88,18 @@ public class RatedItemsBean {
 
         String body = response.readEntity(String.class);
 
-        List<Long> topRateditemIds = new ArrayList<>();
+        List<Long> topRatedCDIds = new ArrayList<>();
         try (JsonReader reader = Json.createReader(new StringReader(body))) {
             JsonArray array = reader.readArray();
             for (int i = 0; i < array.size(); i++) {
-                topRateditemIds.add((long) array.getJsonObject(i).getInt("id"));
+                topRatedCDIds.add((long) array.getJsonObject(i).getInt("id"));
             }
         }
 
-        if (!topRateditemIds.isEmpty()) {
-            logger.info("Top rated books ids " + topRateditemIds);
+        if (!topRatedCDIds.isEmpty()) {
+            logger.info("Top rated books ids " + topRatedCDIds);
             TypedQuery<Item> query = em.createNamedQuery(Item.FIND_TOP_RATED, Item.class);
-            query.setParameter("ids", topRateditemIds);
+            query.setParameter("ids", topRatedCDIds);
             topRatedItems = query.getResultList();
             logger.info("Number of top rated items found " + topRatedItems.size());
         }

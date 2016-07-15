@@ -25,7 +25,7 @@ public class TopCDsEndpoint {
         JsonArrayBuilder array = Json.createArrayBuilder();
         List<Integer> randomCDs = getRandomNumbers();
         for (Integer randomCD : randomCDs) {
-            array.add(Json.createObjectBuilder().add("id", randomCD.toString()));
+            array.add(Json.createObjectBuilder().add("id", randomCD));
         }
         return array.build().toString();
     }
