@@ -50,7 +50,7 @@ public class LabelBean implements Serializable {
     private Label label;
     @Inject
     private Conversation conversation;
-    @PersistenceContext(unitName = "applicationCDBookStorePU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "webCDBookStorePU", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private int page;
     private long count;

@@ -22,7 +22,7 @@ public class ResourceProducer {
     // ======================================
 
     @Produces
-    @PersistenceContext(unitName = "applicationCDBookStorePU")
+    @PersistenceContext(unitName = "webCDBookStorePU")
     private EntityManager em;
 
     @Produces

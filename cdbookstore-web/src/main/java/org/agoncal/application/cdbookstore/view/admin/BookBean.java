@@ -53,7 +53,7 @@ public class BookBean implements Serializable {
     private Book book;
     @Inject
     private Conversation conversation;
-    @PersistenceContext(unitName = "applicationCDBookStorePU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "webCDBookStorePU", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private int page;
     private long count;

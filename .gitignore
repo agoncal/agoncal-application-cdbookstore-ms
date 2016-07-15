@@ -2,6 +2,7 @@
 .DS_Store
 Thumbs.db
 .idea
+*.lst
 *.log
 *.jdbc
 *.iml

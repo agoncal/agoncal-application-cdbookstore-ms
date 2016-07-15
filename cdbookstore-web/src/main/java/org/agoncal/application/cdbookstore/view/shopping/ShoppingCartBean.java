@@ -2,8 +2,6 @@ package org.agoncal.application.cdbookstore.view.shopping;
 
 import org.agoncal.application.cdbookstore.model.*;
 import org.agoncal.application.cdbookstore.view.account.AccountBean;
-import org.agoncal.application.invoice.model.Invoice;
-import org.agoncal.application.invoice.model.InvoiceLine;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;

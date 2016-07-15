@@ -50,7 +50,7 @@ public class CountryBean implements Serializable {
     private Country country;
     @Inject
     private Conversation conversation;
-    @PersistenceContext(unitName = "applicationCDBookStorePU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "webCDBookStorePU", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private int page;
     private long count;

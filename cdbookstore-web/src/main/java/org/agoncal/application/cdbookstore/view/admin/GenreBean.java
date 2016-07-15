@@ -50,7 +50,7 @@ public class GenreBean implements Serializable {
     private Genre genre;
     @Inject
     private Conversation conversation;
-    @PersistenceContext(unitName = "applicationCDBookStorePU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "webCDBookStorePU", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private int page;
     private long count;
