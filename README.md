@@ -26,14 +26,20 @@ To fill up the database, I've used some Amazon Web Services. You will find the r
 
 The application is divided in several modules: 
 
-* The CD-Boostore is the main web app that allows you to buy CDs and Books. It invokes all the following REST services
-* Invoice is a REST service that creates invoices based on the user's shopping cart
-* TopBooks is a REST service that calculates the top selling books
-* TopCDs is a REST service that calculates the top selling cds
+* The **CD-Boostore** is the main web app that allows you to buy CDs and Books. It invokes all the following REST services
+* **Invoice** is a REST service that creates invoices based on the user's shopping cart
+* **TopBooks** is a REST service that calculates the top selling books (JAX-RS + CDI + JSon-P + JPA + Bean Validation)
+* **TopCDs** is a REST service that calculates the top selling cds (JAX-RS + CDI + JSon-P)
 
-## Compile and package
+## Compile, test and package
 
 Being Maven centric, you can compile and package it without tests using `mvn clean compile -Dmaven.test.skip=true`, `mvn clean package -Dmaven.test.skip=true` or `mvn clean install -Dmaven.test.skip=true`. Once you have your war file, you can deploy it.
+
+### Test with Arquillian
+
+Launching tests under [WildFly](http://www.wildfly.org/) is straight forward. You only have to launch WidlFly and execute the tests using the Maven profile :
+
+    mvn clean test -Parquillian-wildfly-remote
 
 ## Deploy and execute the application
 
@@ -50,12 +56,6 @@ If you want to execute each application on different WildFly instances, just do 
 * `./standalone.sh -c standalone-full.xml -Djboss.socket.binding.port-offset=2` (ports 8082 / 9992)
 * `./standalone.sh -c standalone-full.xml -Djboss.socket.binding.port-offset=3` (ports 8083 / 9993)
 * `./standalone.sh -c standalone-full.xml -Djboss.socket.binding.port-offset=5` (ports 8085 / 9995)
-
-### Test with Arquillian
-
-Launching tests under [WildFly](http://www.wildfly.org/) is straight forward. You only have to launch WidlFly and execute the tests using the Maven profile :
-
-    mvn clean test -Parquillian-wildfly-remote
 
 ## Execute the sample
 

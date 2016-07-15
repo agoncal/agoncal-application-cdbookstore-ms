@@ -4,8 +4,10 @@ import org.agoncal.application.topbooks.model.Book;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Max;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
@@ -25,20 +27,30 @@ public class TopBooksEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Book> getTopBooks() {
-        List<Book> results = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
 
         int min = em.createQuery("select min (b.id) from Book b", Long.class).getSingleResult().intValue();
         int max = em.createQuery("select max (b.id) from Book b", Long.class).getSingleResult().intValue();
 
-        while (results.size() < 5) {
+        while (books.size() < 5) {
             long id = new Random().nextInt((max - min) + 1) + min;
-            Book item = em.find(Book.class, id);
-            if (item != null)
-                results.add(item);
+            Book book = em.find(Book.class, id);
+            if (book != null)
+                books.add(book);
         }
 
-        logger.info("Top Books are " + results);
+        logger.info("Top Books are " + books);
+        return books;
+    }
 
-        return results;
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Book getTopBook(@PathParam("id") @Max(9999) Long id) {
+
+        Book book = em.find(Book.class, id);
+
+        logger.info("Top Book is " + book);
+        return book;
     }
 }

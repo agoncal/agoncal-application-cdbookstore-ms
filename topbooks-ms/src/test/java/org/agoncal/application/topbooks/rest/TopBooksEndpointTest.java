@@ -9,6 +9,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,7 +20,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
+import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -31,6 +34,9 @@ public class TopBooksEndpointTest {
 
     @ArquillianResource
     private URI baseURL;
+    private Client client;
+    private WebTarget webTarget;
+
 
     // ======================================
     // =         Deployment methods         =
@@ -50,13 +56,45 @@ public class TopBooksEndpointTest {
     }
 
     // ======================================
+    // =          Lifecycle methods         =
+    // ======================================
+
+    @Before
+    public void initWebTarget() {
+        client = ClientBuilder.newClient();
+        webTarget = client.target(baseURL);
+    }
+
+    // ======================================
     // =            Test methods            =
     // ======================================
 
     @Test
     public void should_be_deployed() {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(baseURL);
-        assertEquals(Response.Status.OK.getStatusCode(), target.request(MediaType.APPLICATION_JSON).get().getStatus());
+        assertEquals(Response.Status.OK.getStatusCode(), webTarget.request(MediaType.APPLICATION_JSON).get().getStatus());
     }
+
+    @Test
+    public void should_have_five_items() {
+        String body = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+        assertThatJson(body).isArray().ofLength(5);
+        assertTrue(body.startsWith("[{\"id\":"));
+    }
+
+    @Test
+    public void should_find_book() {
+        String body = webTarget.path("1001").request(MediaType.APPLICATION_JSON).get(String.class);
+        assertThatJson(body).isEqualTo("{\"id\":1001,\"isbn\":\"1931182310\"}");
+    }
+
+    @Test
+    public void should_not_find_book() {
+        assertEquals(Response.Status.NO_CONTENT.getStatusCode(), webTarget.path("666").request(MediaType.APPLICATION_JSON).get().getStatus());
+    }
+
+    @Test
+    public void should_reach_max_book_id() {
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), webTarget.path("999999").request(MediaType.APPLICATION_JSON).get().getStatus());
+    }
+
 }
