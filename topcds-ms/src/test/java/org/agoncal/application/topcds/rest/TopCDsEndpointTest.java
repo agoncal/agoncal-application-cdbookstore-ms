@@ -21,6 +21,7 @@ import java.net.URI;
 
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @RunAsClient
@@ -73,5 +74,6 @@ public class TopCDsEndpointTest {
     public void should_have_five_items() {
         String body = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
         assertThatJson(body).isArray().ofLength(5);
+        assertTrue(body.startsWith("[{\"id\":"));
     }
 }

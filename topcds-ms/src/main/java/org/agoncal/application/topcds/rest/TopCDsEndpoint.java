@@ -1,6 +1,8 @@
 package org.agoncal.application.topcds.rest;
 
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -8,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.StringJoiner;
 import java.util.logging.Logger;
 
 @Path("/")
@@ -20,13 +21,13 @@ public class TopCDsEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getTopCDs() {
-        StringJoiner sj = new StringJoiner(", ");
 
+        JsonArrayBuilder array = Json.createArrayBuilder();
         List<Integer> randomCDs = getRandomNumbers();
         for (Integer randomCD : randomCDs) {
-            sj.add("{\"id\":" + randomCD.toString() + "}");
+            array.add(Json.createObjectBuilder().add("id", randomCD.toString()));
         }
-        return "[" + sj.toString() + "]";
+        return array.build().toString();
     }
 
     private List<Integer> getRandomNumbers() {
