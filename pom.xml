@@ -24,6 +24,8 @@
         <version.primefaces>6.0</version.primefaces>
         <version.primefaces.theme>1.0.10</version.primefaces.theme>
         <version.resteasy>3.0.18.Final</version.resteasy>
+        <!--Swarm-->
+        <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
         <!-- Test -->
         <version.arquillian>1.1.11.Final</version.arquillian>
         <version.arquillian.wildfly.remote>8.2.1.Final</version.arquillian.wildfly.remote>
@@ -63,6 +65,15 @@
                 <scope>provided</scope>
             </dependency>
 
+            <!-- WILDFLY SWARM -->
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.wildfly-swarm}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- OTHERS -->
             <dependency>
                 <groupId>org.glassfish</groupId>
@@ -74,6 +85,7 @@
                 <artifactId>lorem</artifactId>
                 <version>${version.lorem}</version>
             </dependency>
+
             <!-- WEB -->
             <dependency>
                 <groupId>org.webjars</groupId>
@@ -90,6 +102,7 @@
                 <artifactId>bootstrap</artifactId>
                 <version>${version.primefaces.theme}</version>
             </dependency>
+
             <!-- TEST -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -227,6 +240,19 @@
                             </manifestEntries>
                         </archive>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>wildfly-swarm-plugin</artifactId>
+                    <version>${version.wildfly-swarm}</version>
+                    <executions>
+                        <execution>
+                            <id>package</id>
+                            <goals>
+                                <goal>package</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -28,24 +28,28 @@
         </dependency>
         <!-- TEST -->
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-        </dependency>
-        <dependency>
             <groupId>net.javacrumbs.json-unit</groupId>
             <artifactId>json-unit-fluent</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 
@@ -54,25 +58,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>arquillian-wildfly-remote</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
         <profile>
             <id>swarm</id>
             <dependencies>
@@ -97,7 +82,7 @@
                         <configuration>
                             <properties>
                                 <swarm.http.port>8082</swarm.http.port>
-                                <swarm.context.path>/topbooks</swarm.context.path>
+                                <swarm.context.path>/msTopBooks</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>
@@ -130,7 +115,7 @@
                             <bundleDependencies>false</bundleDependencies>
                             <properties>
                                 <swarm.http.port>8082</swarm.http.port>
-                                <swarm.context.path>/topbooks</swarm.context.path>
+                                <swarm.context.path>/msTopBooks</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>
@@ -166,7 +151,7 @@
                         <configuration>
                             <properties>
                                 <swarm.http.port>8082</swarm.http.port>
-                                <swarm.context.path>/topbooks</swarm.context.path>
+                                <swarm.context.path>/msTopBooks</swarm.context.path>
                             </properties>
                         </configuration>
                     </plugin>
