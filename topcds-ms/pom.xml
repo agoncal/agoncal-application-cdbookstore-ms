@@ -69,6 +69,10 @@
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>jaxrs-cdi</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jaxrs-jsonp</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -96,6 +100,10 @@
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>jaxrs-cdi</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jaxrs-jsonp</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -125,6 +133,10 @@
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>jaxrs-cdi</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jaxrs-jsonp</artifactId>
                 </dependency>
                 <dependency>
                     <groupId>org.wildfly.swarm</groupId>

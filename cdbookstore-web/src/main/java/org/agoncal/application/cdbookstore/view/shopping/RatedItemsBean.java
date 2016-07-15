@@ -85,8 +85,15 @@ public class RatedItemsBean {
             response = ClientBuilder.newClient().target("http://localhost:8081/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         }
 
-        if (response.getStatus() != Response.Status.OK.getStatusCode())
-            return;
+        if (response.getStatus() == Response.Status.NOT_FOUND.getStatusCode()) {
+            try {
+                response = ClientBuilder.newClient().target("http://localhost:8081/msTopCDs").request(MediaType.APPLICATION_JSON).get();
+            } catch (Exception e) {
+                // swallow exception
+            }
+        }
+
+        if (response != null && response.getStatus() != Response.Status.OK.getStatusCode()) return;
 
         topRatedCDs = getTopRatedItems(response);
     }
@@ -103,8 +110,15 @@ public class RatedItemsBean {
             response = ClientBuilder.newClient().target("http://localhost:8082/msTopBooks").request(MediaType.APPLICATION_JSON).get();
         }
 
-        if (response.getStatus() != Response.Status.OK.getStatusCode())
-            return;
+        if (response.getStatus() == Response.Status.NOT_FOUND.getStatusCode()) {
+            try {
+                response = ClientBuilder.newClient().target("http://localhost:8082/msTopBooks").request(MediaType.APPLICATION_JSON).get();
+            } catch (Exception e) {
+                // swallow exception
+            }
+        }
+
+        if (response != null && response.getStatus() != Response.Status.OK.getStatusCode()) return;
 
         topRatedBooks = getTopRatedItems(response);
     }
