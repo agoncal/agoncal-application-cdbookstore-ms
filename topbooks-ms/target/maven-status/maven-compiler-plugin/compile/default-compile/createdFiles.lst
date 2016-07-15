@@ -1,5 +1,0 @@
-org/agoncal/application/topbooks/model/Book.class
-org/agoncal/application/topbooks/rest/RestApplication.class
-org/agoncal/application/topbooks/model/package-info.class
-org/agoncal/application/topbooks/utils/ResourceProducer.class
-org/agoncal/application/topbooks/rest/TopBooksEndpoint.class
