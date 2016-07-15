@@ -34,9 +34,8 @@
             </ui:repeat>
         </div>
 
-        <h:panelGroup rendered="#{fn:length(ratedItemsBean.topRatedItems) != 0}">
-            <p:carousel value="#{ratedItemsBean.topRatedItems}" headerText="Top rated items" var="_item"
-                        responsive="true">
+        <h:panelGroup rendered="#{fn:length(ratedItemsBean.topRatedBooks) != 0}">
+            <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated books" var="_item" responsive="true">
                 <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
 
                     <h:link outcome="/shopping/viewItem.xhtml">
@@ -48,7 +47,25 @@
                 </p:panelGrid>
 
                 <f:facet name="footer">
-                    In total there are #{fn:length(ratedItemsBean.topRatedItems)} top rated items.
+                    In total there are #{fn:length(ratedItemsBean.topRatedBooks)} top rated books.
+                </f:facet>
+            </p:carousel>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{fn:length(ratedItemsBean.topRatedCDs) != 0}">
+            <p:carousel value="#{ratedItemsBean.topRatedCDs}" headerText="Top rated CDs" var="_item" responsive="true">
+                <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
+
+                    <h:link outcome="/shopping/viewItem.xhtml">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <p:graphicImage url="#{_item.smallImageURL}"/>
+                    </h:link>
+
+                    <h:outputText value="#{fn:substring(_item.title, 0, 35)}..."/>
+                </p:panelGrid>
+
+                <f:facet name="footer">
+                    In total there are #{fn:length(ratedItemsBean.topRatedCDs)} top rated cds.
                 </f:facet>
             </p:carousel>
         </h:panelGroup>

@@ -30,7 +30,8 @@ public class RatedItemsBean {
     // =          Injection Points          =
     // ======================================
 
-    List<Item> topRatedItems;
+    List<Item> topRatedCDs;
+    List<Item> topRatedBooks;
     Set<Item> randomItems = new HashSet<>();
     @Inject
     private FacesContext facesContext;
@@ -49,6 +50,7 @@ public class RatedItemsBean {
 
     @PostConstruct
     private void init() {
+        doFindTopRatedBooks();
         doFindTopRatedCDs();
         doFindRandomThree();
 
@@ -80,12 +82,36 @@ public class RatedItemsBean {
         try {
             response = ClientBuilder.newClient().target("http://localhost:8080/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         } catch (Exception e) {
-            response = ClientBuilder.newClient().target("http://localhost:8085/msTopCDs").request(MediaType.APPLICATION_JSON).get();
+            response = ClientBuilder.newClient().target("http://localhost:8082/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         }
 
         if (response.getStatus() != Response.Status.OK.getStatusCode())
             return;
 
+        topRatedCDs = getTopRatedItems(response);
+    }
+
+    @Auditable
+    private void doFindTopRatedBooks() {
+
+        Response response;
+
+        // Tries on port 8080 if not 8085
+        try {
+            response = ClientBuilder.newClient().target("http://localhost:8080/msTopBooks").request(MediaType.APPLICATION_JSON).get();
+        } catch (Exception e) {
+            response = ClientBuilder.newClient().target("http://localhost:8085/msTopBooks").request(MediaType.APPLICATION_JSON).get();
+        }
+
+        if (response.getStatus() != Response.Status.OK.getStatusCode())
+            return;
+
+        topRatedBooks = getTopRatedItems(response);
+    }
+
+    private List<Item> getTopRatedItems(Response response) {
+
+        List<Item> topRatedItems = null;
         String body = response.readEntity(String.class);
 
         List<Long> topRatedCDIds = new ArrayList<>();
@@ -104,18 +130,27 @@ public class RatedItemsBean {
             logger.info("Number of top rated items found " + topRatedItems.size());
         }
 
+        return topRatedItems;
     }
 
     // ======================================
     // =        Getters and Setters         =
     // ======================================
 
-    public List<Item> getTopRatedItems() {
-        return topRatedItems;
+    public List<Item> getTopRatedCDs() {
+        return topRatedCDs;
     }
 
-    public void setTopRatedItems(List<Item> topRatedItems) {
-        this.topRatedItems = topRatedItems;
+    public void setTopRatedCDs(List<Item> topRatedCDs) {
+        this.topRatedCDs = topRatedCDs;
+    }
+
+    public List<Item> getTopRatedBooks() {
+        return topRatedBooks;
+    }
+
+    public void setTopRatedBooks(List<Item> topRatedBooks) {
+        this.topRatedBooks = topRatedBooks;
     }
 
     public List<Item> getRandomItems() {
