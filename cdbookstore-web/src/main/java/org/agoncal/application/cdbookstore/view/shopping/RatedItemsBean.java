@@ -78,7 +78,7 @@ public class RatedItemsBean {
 
         Response response;
 
-        // Tries on port 8080 if not 8085
+        // Tries on port 8080 if not 8081
         try {
             response = ClientBuilder.newClient().target("http://localhost:8080/msTopCDs").request(MediaType.APPLICATION_JSON).get();
         } catch (Exception e) {
@@ -96,7 +96,7 @@ public class RatedItemsBean {
 
         Response response;
 
-        // Tries on port 8080 if not 8085
+        // Tries on port 8080 if not 8082
         try {
             response = ClientBuilder.newClient().target("http://localhost:8080/msTopBooks").request(MediaType.APPLICATION_JSON).get();
         } catch (Exception e) {
