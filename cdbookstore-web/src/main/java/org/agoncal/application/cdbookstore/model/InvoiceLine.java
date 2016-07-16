@@ -108,8 +108,8 @@ public class InvoiceLine implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceLine that = (InvoiceLine) o;
         return Objects.equals(quantity, that.quantity) &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(unitCost, that.unitCost);
+            Objects.equals(title, that.title) &&
+            Objects.equals(unitCost, that.unitCost);
     }
 
     @Override
@@ -120,11 +120,11 @@ public class InvoiceLine implements Serializable {
     @Override
     public String toString() {
         return "InvoiceLine{" +
-                "id=" + id +
-                ", version=" + version +
-                ", quantity=" + quantity +
-                ", title='" + title + '\'' +
-                ", unitCost=" + unitCost +
-                '}';
+            "id=" + id +
+            ", version=" + version +
+            ", quantity=" + quantity +
+            ", title='" + title + '\'' +
+            ", unitCost=" + unitCost +
+            '}';
     }
 }

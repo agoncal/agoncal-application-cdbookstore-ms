@@ -1,5 +1,7 @@
 package org.agoncal.application.topcds.rest;
 
+import io.swagger.annotations.Api;
+
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -13,6 +15,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 @Path("/")
+@Api(description = "Top CDs Endpoint")
 public class TopCDsEndpoint {
 
     @Inject

@@ -24,6 +24,7 @@
         <version.primefaces>6.0</version.primefaces>
         <version.primefaces.theme>1.0.10</version.primefaces.theme>
         <version.resteasy>3.0.18.Final</version.resteasy>
+        <version.swagger>1.5.9</version.swagger>
         <!--Swarm-->
         <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
         <!-- Test -->
@@ -85,7 +86,11 @@
                 <artifactId>lorem</artifactId>
                 <version>${version.lorem}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-jaxrs</artifactId>
+                <version>${version.swagger}</version>
+            </dependency>
             <!-- WEB -->
             <dependency>
                 <groupId>org.webjars</groupId>
@@ -110,6 +115,12 @@
                 <version>${version.arquillian}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+                <version>2.2.2</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -264,16 +275,4 @@
         </pluginManagement>
     </build>
 
-    <repositories>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-            <layout>default</layout>
-        </repository>
-        <repository>
-            <id>jboss-public</id>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
 </project>

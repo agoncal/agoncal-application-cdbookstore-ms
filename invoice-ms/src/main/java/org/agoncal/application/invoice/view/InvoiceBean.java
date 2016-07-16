@@ -65,7 +65,7 @@ public class InvoiceBean implements Serializable {
     }
 
 	/*
-	 * Support updating and deleting Invoice entities
+     * Support updating and deleting Invoice entities
 	 */
 
     public void setId(Long id) {

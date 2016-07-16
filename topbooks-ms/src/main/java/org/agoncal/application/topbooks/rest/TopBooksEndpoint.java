@@ -1,5 +1,6 @@
 package org.agoncal.application.topbooks.rest;
 
+import io.swagger.annotations.Api;
 import org.agoncal.application.topbooks.model.Book;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 @Path("/")
+@Api(description = "Top Books Endpoint")
 public class TopBooksEndpoint {
 
     @Inject

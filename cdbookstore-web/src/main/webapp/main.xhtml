@@ -35,7 +35,8 @@
         </div>
 
         <h:panelGroup rendered="#{fn:length(ratedItemsBean.topRatedBooks) != 0}">
-            <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated books" var="_item" responsive="true">
+            <p:carousel value="#{ratedItemsBean.topRatedBooks}" headerText="Top rated books" var="_item"
+                        responsive="true">
                 <p:panelGrid columns="2" layout="grid" columnClasses="label,value" style="width:100%;margin:10px 0px">
 
                     <h:link outcome="/shopping/viewItem.xhtml">

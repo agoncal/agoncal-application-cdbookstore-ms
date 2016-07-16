@@ -312,10 +312,10 @@ public class Invoice implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Invoice invoice = (Invoice) o;
         return Objects.equals(invoiceDate, invoice.invoiceDate) &&
-                Objects.equals(firstName, invoice.firstName) &&
-                Objects.equals(lastName, invoice.lastName) &&
-                Objects.equals(email, invoice.email) &&
-                Objects.equals(invoiceLines, invoice.invoiceLines);
+            Objects.equals(firstName, invoice.firstName) &&
+            Objects.equals(lastName, invoice.lastName) &&
+            Objects.equals(email, invoice.email) &&
+            Objects.equals(invoiceLines, invoice.invoiceLines);
     }
 
     @Override
@@ -326,27 +326,27 @@ public class Invoice implements Serializable {
     @Override
     public String toString() {
         return "Invoice{" +
-                "city='" + city + '\'' +
-                ", id=" + id +
-                ", version=" + version +
-                ", invoiceDate=" + invoiceDate +
-                ", totalBeforeDiscount=" + totalBeforeDiscount +
-                ", discountRate=" + discountRate +
-                ", discount=" + discount +
-                ", totalAfterDiscount=" + totalAfterDiscount +
-                ", vatRate=" + vatRate +
-                ", vat=" + vat +
-                ", totalAfterVat=" + totalAfterVat +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", street1='" + street1 + '\'' +
-                ", street2='" + street2 + '\'' +
-                ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", country='" + country + '\'' +
-                ", invoiceLines=" + invoiceLines +
-                '}';
+            "city='" + city + '\'' +
+            ", id=" + id +
+            ", version=" + version +
+            ", invoiceDate=" + invoiceDate +
+            ", totalBeforeDiscount=" + totalBeforeDiscount +
+            ", discountRate=" + discountRate +
+            ", discount=" + discount +
+            ", totalAfterDiscount=" + totalAfterDiscount +
+            ", vatRate=" + vatRate +
+            ", vat=" + vat +
+            ", totalAfterVat=" + totalAfterVat +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", telephone='" + telephone + '\'' +
+            ", email='" + email + '\'' +
+            ", street1='" + street1 + '\'' +
+            ", street2='" + street2 + '\'' +
+            ", state='" + state + '\'' +
+            ", zipcode='" + zipcode + '\'' +
+            ", country='" + country + '\'' +
+            ", invoiceLines=" + invoiceLines +
+            '}';
     }
 }
