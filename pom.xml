@@ -12,7 +12,8 @@
 
     <modules>
         <module>cdbookstore-web</module>
-        <!--<module>invoice-ms</module>-->
+        <module>invoice-ms</module>
+        <module>test</module>
         <module>topcds-ms</module>
         <module>topbooks-ms</module>
     </modules>
@@ -241,6 +242,7 @@
                     <version>${version.war.plugin}</version>
                     <configuration>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <attachClasses>true</attachClasses>
                         <archive>
                             <manifest>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>

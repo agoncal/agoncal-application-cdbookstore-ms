@@ -21,22 +21,19 @@
     </properties>
 
     <dependencies>
+        <!-- JAVA EE -->
         <dependency>
-            <groupId>org.agoncal.application.cdbookstore</groupId>
-            <artifactId>invoice-api</artifactId>
-            <version>1.0</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-7.0</artifactId>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-
+        <!-- TEST -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -45,25 +42,36 @@
     </dependencies>
 
     <build>
-        <finalName>applicationInvoice</finalName>
+        <finalName>msInvoice</finalName>
     </build>
 
     <profiles>
         <profile>
-            <id>arquillian-wildfly-remote</id>
+            <id>swarm</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>undertow</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.swarm</groupId>
+                    <artifactId>jaxrs-cdi</artifactId>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <groupId>org.wildfly.swarm</groupId>
+                        <artifactId>wildfly-swarm-plugin</artifactId>
+                        <configuration>
+                            <properties>
+                                <swarm.http.port>8083</swarm.http.port>
+                                <swarm.context.path>/msInvoice</swarm.context.path>
+                            </properties>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
 </project>

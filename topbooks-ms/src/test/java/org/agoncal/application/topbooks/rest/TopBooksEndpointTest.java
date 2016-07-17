@@ -58,7 +58,7 @@ public class TopBooksEndpointTest {
             .addClass(TopBooksEndpoint.class)
             .addClass(ResourceProducer.class)
             .addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml")
-            .addAsResource("import_h2.sql", "import_h2.sql")
+            .addAsResource("import_h2_topbooks-test.sql")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             .addAsLibraries(files);
     }

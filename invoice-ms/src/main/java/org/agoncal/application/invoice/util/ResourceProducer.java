@@ -13,7 +13,7 @@ public class ResourceProducer {
     // ======================================
 
     @Produces
-    @PersistenceContext(unitName = "applicationInvoicePU")
+    @PersistenceContext(unitName = "msInvoicePU")
     private EntityManager em;
 
     @Produces

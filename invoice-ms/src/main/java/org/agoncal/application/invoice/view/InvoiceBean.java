@@ -50,7 +50,7 @@ public class InvoiceBean implements Serializable {
     private Invoice invoice;
     @Inject
     private Conversation conversation;
-    @PersistenceContext(unitName = "applicationInvoicePU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "msInvoicePU", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private int page;
     private long count;
