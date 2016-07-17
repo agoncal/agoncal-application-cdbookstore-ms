@@ -21,9 +21,6 @@ public class ShoppingCartItem {
     @Size(min = 1, max = 200)
     protected String title;
 
-    @Size(min = 1, max = 10000)
-    protected String description;
-
     @Min(1)
     protected Float unitCost;
 
@@ -38,10 +35,9 @@ public class ShoppingCartItem {
     public ShoppingCartItem() {
     }
 
-    public ShoppingCartItem(String title, String description, Float unitCost, Integer quantity) {
+    public ShoppingCartItem(String title, Float unitCost, Integer quantity) {
 
         this.title = title;
-        this.description = description;
         this.unitCost = unitCost;
         this.quantity = quantity;
     }
@@ -64,14 +60,6 @@ public class ShoppingCartItem {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Float getUnitCost() {
@@ -100,20 +88,18 @@ public class ShoppingCartItem {
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCartItem that = (ShoppingCartItem) o;
         return Objects.equals(title, that.title) &&
-            Objects.equals(description, that.description) &&
             Objects.equals(unitCost, that.unitCost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, unitCost);
+        return Objects.hash(title, unitCost);
     }
 
     @Override
     public String toString() {
         return "ShoppingCartItem{" +
             "title='" + title + '\'' +
-            ", description='" + description + '\'' +
             ", unitCost=" + unitCost +
             ", quantity=" + quantity +
             '}';

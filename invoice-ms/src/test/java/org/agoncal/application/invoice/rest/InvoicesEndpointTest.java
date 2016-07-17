@@ -114,4 +114,15 @@ public class InvoicesEndpointTest {
     public void should_reach_max_invoice_id() {
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), webTarget.path("999999").request(MediaType.APPLICATION_JSON).get().getStatus());
     }
+
+    @Test
+    public void should_create_an_invoice() {
+        Invoice invoice = new Invoice("John", "Smith", "john@smith.com", "Ritherdon Rd", "Brighton", "SW817", "UK");
+        invoice.setTelephone("+44 34567 789");
+        invoice.setStreet2("Corner right");
+        invoice.addInvoiceLine(new InvoiceLine("Help", 12.99F, 1));
+        invoice.addInvoiceLine(new InvoiceLine("Java EE 7", 18.99F, 2));
+
+        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), webTarget.path("999999").request(MediaType.APPLICATION_JSON).get().getStatus());
+    }
 }

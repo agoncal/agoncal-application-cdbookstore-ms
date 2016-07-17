@@ -59,8 +59,8 @@ public class InvoiceServiceTest {
 
         // Creates an object
         Invoice invoice = new Invoice("First name", "Last name", "email", "street1", "city", "zipcode", "country");
-        InvoiceLine line1 = new InvoiceLine(1, "item1", 2.25F);
-        InvoiceLine line2 = new InvoiceLine(3, "item2", 12.5F);
+        InvoiceLine line1 = new InvoiceLine("item1", 2.25F, 1);
+        InvoiceLine line2 = new InvoiceLine("item2", 12.5F, 3);
         invoice.addInvoiceLine(line1);
         invoice.addInvoiceLine(line2);
 
@@ -93,8 +93,8 @@ public class InvoiceServiceTest {
 
         // Creates an object
         Invoice invoice = new Invoice("First name", "Last name", "email", "street1", "city", "zipcode", "country");
-        InvoiceLine line1 = new InvoiceLine(1, "item1", 25.25F);
-        InvoiceLine line2 = new InvoiceLine(3, "item2", 33.75F);
+        InvoiceLine line1 = new InvoiceLine("item1", 25.25F, 1);
+        InvoiceLine line2 = new InvoiceLine("item2", 33.75F, 3);
         invoice.addInvoiceLine(line1);
         invoice.addInvoiceLine(line2);
 

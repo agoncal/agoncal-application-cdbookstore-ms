@@ -21,21 +21,25 @@ public class InvoiceLine implements Serializable {
     // =             Attributes             =
     // ======================================
 
-    @Column(length = 200)
-    @NotNull
-    @Size(min = 1, max = 200)
-    protected String title;
-    @Column(name = "unit_cost")
-    @NotNull
-    @Min(1)
-    protected Float unitCost;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
+
     @Version
     @Column(name = "version")
     private int version;
+
+    @Column(length = 200)
+    @NotNull
+    @Size(min = 1, max = 200)
+    protected String title;
+
+    @Column(name = "unit_cost")
+    @NotNull
+    @Min(1)
+    protected Float unitCost;
+
     @Column(nullable = false)
     @NotNull
     @Min(1)
@@ -48,11 +52,12 @@ public class InvoiceLine implements Serializable {
     public InvoiceLine() {
     }
 
-    public InvoiceLine(Integer quantity, String title, Float unitCost) {
-        this.quantity = quantity;
+    public InvoiceLine(String title, Float unitCost, Integer quantity) {
         this.title = title;
         this.unitCost = unitCost;
+        this.quantity = quantity;
     }
+
 
     // ======================================
     // =        Getters and Setters         =

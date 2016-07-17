@@ -25,8 +25,8 @@ public class MarshallingTest {
         ShoppingCart shoppingCart = new ShoppingCart("John", "Smith", "john@smith.com", "Ritherdon Rd", "Brighton", "SW817", "UK");
         shoppingCart.setTelephone("+44 34567 789");
         shoppingCart.setStreet2("Corner right");
-        shoppingCart.addItem(new ShoppingCartItem("Help", "Beatles CD", 12.99F, 1));
-        shoppingCart.addItem(new ShoppingCartItem("Java EE 7", "Great book", 18.99F, 2));
+        shoppingCart.addItem(new ShoppingCartItem("Help", 12.99F, 1));
+        shoppingCart.addItem(new ShoppingCartItem("Java EE 7", 18.99F, 2));
 
         // Shopping Cart to XML
         StringWriter writer = new StringWriter();

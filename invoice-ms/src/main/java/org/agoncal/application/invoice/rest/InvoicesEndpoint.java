@@ -5,16 +5,13 @@ import org.agoncal.application.invoice.model.Invoice;
 import org.agoncal.application.invoice.service.InvoiceService;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.validation.constraints.Max;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Logger;
 
 @Path("/")
@@ -46,5 +43,15 @@ public class InvoicesEndpoint {
 
         logger.info("Invoice is " + invoice);
         return invoice;
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response create(Invoice invoice) {
+        invoice = invoiceService.persist(invoice);
+        URI uri = UriBuilder.fromResource(InvoicesEndpoint.class).path(String.valueOf(invoice.getId())).build();
+
+        logger.info("URI is " + uri);
+        return Response.created(uri).build();
     }
 }

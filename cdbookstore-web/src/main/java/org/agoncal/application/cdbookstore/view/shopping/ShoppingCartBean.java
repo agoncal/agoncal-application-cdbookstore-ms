@@ -70,7 +70,7 @@ public class ShoppingCartBean implements Serializable {
         }
         if (!itemFound)
             // Otherwise it's added to the shopping cart
-            cartItems.add(new ShoppingCartItem(item.getTitle(), item.getDescription(), item.getUnitCost(), 1));
+            cartItems.add(new ShoppingCartItem(item.getTitle(), item.getUnitCost(), 1));
 
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, item.getTitle() + " added to the shopping cart",
             "You can now add more stuff if you want"));
