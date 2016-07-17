@@ -39,7 +39,7 @@ public class InvoiceService {
 
         // Compute total amount
         Float total = 0F;
-        for (InvoiceLine invoiceLine : invoice.getInvoiceLines()) {
+        for (InvoiceLine invoiceLine : invoice.getItems()) {
             total += invoiceLine.getQuantity() * invoiceLine.getUnitCost();
         }
 

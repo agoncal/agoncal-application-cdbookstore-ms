@@ -3,16 +3,14 @@ package org.agoncal.application.cdbookstore.view.shopping;
 import org.agoncal.application.cdbookstore.model.*;
 import org.agoncal.application.cdbookstore.view.account.AccountBean;
 
-import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.validation.Validator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +36,13 @@ public class ShoppingCartBean implements Serializable {
     private AccountBean accountBean;
 
     @Inject
-    private transient JMSContext jmsContext;
-
-    @Resource(lookup = "jms/queue/invoiceQueue")
-    private Queue queue;
-
-    @Inject
     private EntityManager em;
 
     @Inject
     private Logger logger;
+
+    @Inject
+    private Validator validator;
 
     // ======================================
     // =             Attributes             =
@@ -55,7 +50,7 @@ public class ShoppingCartBean implements Serializable {
 
     private List<ShoppingCartItem> cartItems = new ArrayList<>();
     private Address address = new Address();
-    private String country = new String();
+    private String country = "";
     private CreditCard creditCard = new CreditCard();
 
     // ======================================
@@ -68,14 +63,14 @@ public class ShoppingCartBean implements Serializable {
         boolean itemFound = false;
         for (ShoppingCartItem cartItem : cartItems) {
             // If item already exists in the shopping cart we just change the quantity
-            if (cartItem.getItem().equals(item)) {
+            if (cartItem.equals(item)) {
                 cartItem.setQuantity(cartItem.getQuantity() + 1);
                 itemFound = true;
             }
         }
         if (!itemFound)
             // Otherwise it's added to the shopping cart
-            cartItems.add(new ShoppingCartItem(item, 1));
+            cartItems.add(new ShoppingCartItem(item.getTitle(), item.getDescription(), item.getUnitCost(), 1));
 
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, item.getTitle() + " added to the shopping cart",
             "You can now add more stuff if you want"));
@@ -87,7 +82,7 @@ public class ShoppingCartBean implements Serializable {
         Item item = em.find(Item.class, getParamId("itemId"));
 
         for (ShoppingCartItem cartItem : cartItems) {
-            if (cartItem.getItem().equals(item)) {
+            if (cartItem.equals(item)) {
                 cartItems.remove(cartItem);
                 return null;
             }
@@ -104,15 +99,15 @@ public class ShoppingCartBean implements Serializable {
 
         // Creating the invoice
         User user = accountBean.getUser();
-        Invoice invoice = new Invoice(user.getFirstName(), user.getLastName(), user.getEmail(), address.getStreet1(), address.getCity(), address.getZipcode(), country);
-        invoice.setTelephone(user.getTelephone());
-        invoice.setStreet2(address.getStreet2());
-        for (ShoppingCartItem cartItem : cartItems) {
-            invoice.addInvoiceLine(new InvoiceLine(cartItem.getQuantity(), cartItem.getItem().getTitle(), cartItem.getItem().getUnitCost()));
-        }
+        ShoppingCart shoppingCart = new ShoppingCart(user.getFirstName(), user.getLastName(), user.getEmail(), address.getStreet1(), address.getCity(), address.getZipcode(), country);
+        shoppingCart.setTelephone(user.getTelephone());
+        shoppingCart.setStreet2(address.getStreet2());
+        shoppingCart.setItems(cartItems);
+
+        // Validating the invoice
+        validator.validate(shoppingCart);
 
         // Sending the invoice
-        jmsContext.createProducer().setTimeToLive(1000).send(queue, invoice);
         logger.info("An invoice has been sent to the queue");
 
         // Displaying the invoice creation

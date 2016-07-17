@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
  *         http://www.antoniogoncalves.org
  *         --
  */
-
+@XmlRootElement
 @Entity
 @NamedQuery(name = Invoice.FIND_MONTHLY, query = "SELECT i FROM Invoice i ORDER BY i.invoiceDate ASC")
 public class Invoice implements Serializable {
@@ -86,7 +87,7 @@ public class Invoice implements Serializable {
     private String country;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<InvoiceLine> invoiceLines = new HashSet<>();
+    private Set<InvoiceLine> items = new HashSet<>();
 
     // ======================================
     // =            Constructors            =
@@ -290,16 +291,16 @@ public class Invoice implements Serializable {
         this.country = country;
     }
 
-    public Set<InvoiceLine> getInvoiceLines() {
-        return invoiceLines;
+    public Set<InvoiceLine> getItems() {
+        return items;
     }
 
-    public void setInvoiceLines(Set<InvoiceLine> invoiceLines) {
-        this.invoiceLines = invoiceLines;
+    public void setItems(Set<InvoiceLine> invoiceLines) {
+        this.items = invoiceLines;
     }
 
     public void addInvoiceLine(InvoiceLine invoiceLine) {
-        invoiceLines.add(invoiceLine);
+        items.add(invoiceLine);
     }
 
     // ======================================
@@ -315,12 +316,12 @@ public class Invoice implements Serializable {
             Objects.equals(firstName, invoice.firstName) &&
             Objects.equals(lastName, invoice.lastName) &&
             Objects.equals(email, invoice.email) &&
-            Objects.equals(invoiceLines, invoice.invoiceLines);
+            Objects.equals(items, invoice.items);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(invoiceDate, firstName, lastName, email, invoiceLines);
+        return Objects.hash(invoiceDate, firstName, lastName, email, items);
     }
 
     @Override
@@ -346,7 +347,7 @@ public class Invoice implements Serializable {
             ", state='" + state + '\'' +
             ", zipcode='" + zipcode + '\'' +
             ", country='" + country + '\'' +
-            ", invoiceLines=" + invoiceLines +
+            ", invoiceLines=" + items +
             '}';
     }
 }

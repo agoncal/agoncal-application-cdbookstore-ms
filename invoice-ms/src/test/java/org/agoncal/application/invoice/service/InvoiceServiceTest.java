@@ -72,7 +72,7 @@ public class InvoiceServiceTest {
 
         // Finds the object from the database and checks it's the right one
         invoice = invoiceService.findById(invoice.getId());
-        assertEquals(2, invoice.getInvoiceLines().size());
+        assertEquals(2, invoice.getItems().size());
         assertEquals("First name", invoice.getFirstName());
 
         // Updates the object
@@ -104,7 +104,7 @@ public class InvoiceServiceTest {
 
         // Finds the object from the database and checks it's the right one
         invoice = invoiceService.findById(invoice.getId());
-        assertEquals(2, invoice.getInvoiceLines().size());
+        assertEquals(2, invoice.getItems().size());
         assertEquals("First name", invoice.getFirstName());
         assertEquals(new Float(5.5), invoice.getVatRate());
         assertEquals(new Float(12.5), invoice.getDiscountRate());
