@@ -77,7 +77,7 @@ public class InvoiceBean implements Serializable {
     }
 
 	/*
-	 * Support searching Invoice entities with pagination
+     * Support searching Invoice entities with pagination
 	 */
 
     public void setInvoice(Invoice invoice) {
