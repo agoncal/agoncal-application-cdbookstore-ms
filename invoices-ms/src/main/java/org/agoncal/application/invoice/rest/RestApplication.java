@@ -18,7 +18,7 @@ public class RestApplication extends Application {
         beanConfig.setDescription("CRUD operations on invoices");
         beanConfig.setVersion("1.0.0");
         beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:8080/msInvoice");
+        beanConfig.setHost("localhost:8080/msInvoices");
         beanConfig.setBasePath("/");
         beanConfig.setResourcePackage("org.agoncal.application.invoice.rest");
         beanConfig.setPrettyPrint(true);
