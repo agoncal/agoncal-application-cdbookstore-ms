@@ -1,6 +1,7 @@
 package org.agoncal.application.cdbookstore.view.shopping;
 
 import org.agoncal.application.cdbookstore.model.Item;
+import org.agoncal.application.cdbookstore.registry.ServiceRegistry;
 import org.agoncal.application.cdbookstore.util.Auditable;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +19,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.StringReader;
+import java.net.URI;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -30,19 +32,22 @@ public class RatedItemsBean {
     // =          Injection Points          =
     // ======================================
 
-    List<Item> topRatedCDs;
-    List<Item> topRatedBooks;
-    Set<Item> randomItems = new HashSet<>();
-    @Inject
-    private FacesContext facesContext;
-
-    // ======================================
-    // =             Attributes             =
-    // ======================================
     @Inject
     private Logger logger;
     @Inject
     private EntityManager em;
+    @Inject
+    private FacesContext facesContext;
+    @Inject
+    private ServiceRegistry serviceRegistry;
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
+    List<Item> topRatedCDs;
+    List<Item> topRatedBooks;
+    Set<Item> randomItems = new HashSet<>();
 
     // ======================================
     // =         Lifecycle methods          =
@@ -53,7 +58,6 @@ public class RatedItemsBean {
         doFindTopRatedBooks();
         doFindTopRatedCDs();
         doFindRandomThree();
-
     }
 
     // ======================================
@@ -73,50 +77,24 @@ public class RatedItemsBean {
         }
     }
 
-    @Auditable
     private void doFindTopRatedCDs() {
 
-        Response response;
+        URI serviceURI = serviceRegistry.getTopRatedCDsURI();
+        if (serviceURI == null) return;
 
-        // Tries on port 8080 if not 8081
-        try {
-            response = ClientBuilder.newClient().target("http://localhost:8080/msTopCDs").request(MediaType.APPLICATION_JSON).get();
-        } catch (Exception e) {
-            response = ClientBuilder.newClient().target("http://localhost:8081/msTopCDs").request(MediaType.APPLICATION_JSON).get();
-        }
-
-        if (response.getStatus() == Response.Status.NOT_FOUND.getStatusCode()) {
-            try {
-                response = ClientBuilder.newClient().target("http://localhost:8081/msTopCDs").request(MediaType.APPLICATION_JSON).get();
-            } catch (Exception e) {
-                // swallow exception
-            }
-        }
+        Response response = ClientBuilder.newClient().target(serviceURI).request(MediaType.APPLICATION_JSON).get();
 
         if (response != null && response.getStatus() != Response.Status.OK.getStatusCode()) return;
 
         topRatedCDs = getTopRatedItems(response);
     }
 
-    @Auditable
     private void doFindTopRatedBooks() {
 
-        Response response;
+        URI serviceURI = serviceRegistry.getTopRatedBooksURI();
+        if (serviceURI == null) return;
 
-        // Tries on port 8080 if not 8082
-        try {
-            response = ClientBuilder.newClient().target("http://localhost:8080/msTopBooks").request(MediaType.APPLICATION_JSON).get();
-        } catch (Exception e) {
-            response = ClientBuilder.newClient().target("http://localhost:8082/msTopBooks").request(MediaType.APPLICATION_JSON).get();
-        }
-
-        if (response.getStatus() == Response.Status.NOT_FOUND.getStatusCode()) {
-            try {
-                response = ClientBuilder.newClient().target("http://localhost:8082/msTopBooks").request(MediaType.APPLICATION_JSON).get();
-            } catch (Exception e) {
-                // swallow exception
-            }
-        }
+        Response response = ClientBuilder.newClient().target(serviceURI).request(MediaType.APPLICATION_JSON).get();
 
         if (response != null && response.getStatus() != Response.Status.OK.getStatusCode()) return;
 
