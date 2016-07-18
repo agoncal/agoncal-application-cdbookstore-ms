@@ -205,31 +205,31 @@ public class UserBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("firstName")),
+                builder.lower(root.get("firstName")),
                 '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("lastName")),
+                builder.lower(root.get("lastName")),
                 '%' + lastName.toLowerCase() + '%'));
         }
         String telephone = this.example.getTelephone();
         if (telephone != null && !"".equals(telephone)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("telephone")),
+                builder.lower(root.get("telephone")),
                 '%' + telephone.toLowerCase() + '%'));
         }
         String email = this.example.getEmail();
         if (email != null && !"".equals(email)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("email")),
+                builder.lower(root.get("email")),
                 '%' + email.toLowerCase() + '%'));
         }
         String login = this.example.getLogin();
         if (login != null && !"".equals(login)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("login")),
+                builder.lower(root.get("login")),
                 '%' + login.toLowerCase() + '%'));
         }
 

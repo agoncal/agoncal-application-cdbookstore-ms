@@ -205,31 +205,31 @@ public class CountryBean implements Serializable {
         String isoCode = this.example.getIsoCode();
         if (isoCode != null && !"".equals(isoCode)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("isoCode")),
+                builder.lower(root.get("isoCode")),
                 '%' + isoCode.toLowerCase() + '%'));
         }
         String name = this.example.getName();
         if (name != null && !"".equals(name)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("name")),
+                builder.lower(root.get("name")),
                 '%' + name.toLowerCase() + '%'));
         }
         String printableName = this.example.getPrintableName();
         if (printableName != null && !"".equals(printableName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("printableName")),
+                builder.lower(root.get("printableName")),
                 '%' + printableName.toLowerCase() + '%'));
         }
         String iso3 = this.example.getIso3();
         if (iso3 != null && !"".equals(iso3)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("iso3")),
+                builder.lower(root.get("iso3")),
                 '%' + iso3.toLowerCase() + '%'));
         }
         String numcode = this.example.getNumcode();
         if (numcode != null && !"".equals(numcode)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("numcode")),
+                builder.lower(root.get("numcode")),
                 '%' + numcode.toLowerCase() + '%'));
         }
 

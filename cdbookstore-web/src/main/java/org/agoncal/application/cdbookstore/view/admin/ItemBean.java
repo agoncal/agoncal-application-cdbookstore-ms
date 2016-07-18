@@ -205,13 +205,13 @@ public class ItemBean implements Serializable {
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("title")),
+                builder.lower(root.get("title")),
                 '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("description")),
+                builder.lower(root.get("description")),
                 '%' + description.toLowerCase() + '%'));
         }
 

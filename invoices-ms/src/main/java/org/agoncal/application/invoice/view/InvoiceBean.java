@@ -205,31 +205,31 @@ public class InvoiceBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("firstName")),
+                builder.lower(root.get("firstName")),
                 '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("lastName")),
+                builder.lower(root.get("lastName")),
                 '%' + lastName.toLowerCase() + '%'));
         }
         String telephone = this.example.getTelephone();
         if (telephone != null && !"".equals(telephone)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("telephone")),
+                builder.lower(root.get("telephone")),
                 '%' + telephone.toLowerCase() + '%'));
         }
         String email = this.example.getEmail();
         if (email != null && !"".equals(email)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("email")),
+                builder.lower(root.get("email")),
                 '%' + email.toLowerCase() + '%'));
         }
         String street1 = this.example.getStreet1();
         if (street1 != null && !"".equals(street1)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("street1")),
+                builder.lower(root.get("street1")),
                 '%' + street1.toLowerCase() + '%'));
         }
 

@@ -206,19 +206,19 @@ public class AuthorBean implements Serializable {
         String firstName = this.example.getFirstName();
         if (firstName != null && !"".equals(firstName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("firstName")),
+                builder.lower(root.get("firstName")),
                 '%' + firstName.toLowerCase() + '%'));
         }
         String lastName = this.example.getLastName();
         if (lastName != null && !"".equals(lastName)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("lastName")),
+                builder.lower(root.get("lastName")),
                 '%' + lastName.toLowerCase() + '%'));
         }
         String bio = this.example.getBio();
         if (bio != null && !"".equals(bio)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("bio")),
+                builder.lower(root.get("bio")),
                 '%' + bio.toLowerCase() + '%'));
         }
         Integer age = this.example.getAge();

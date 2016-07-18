@@ -206,7 +206,7 @@ public class PublisherBean implements Serializable {
         String name = this.example.getName();
         if (name != null && !"".equals(name)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("name")),
+                builder.lower(root.get("name")),
                 '%' + name.toLowerCase() + '%'));
         }
 

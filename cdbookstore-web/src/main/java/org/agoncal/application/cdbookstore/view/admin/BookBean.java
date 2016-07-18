@@ -211,19 +211,19 @@ public class BookBean implements Serializable {
         String title = this.example.getTitle();
         if (title != null && !"".equals(title)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("title")),
+                builder.lower(root.get("title")),
                 '%' + title.toLowerCase() + '%'));
         }
         String description = this.example.getDescription();
         if (description != null && !"".equals(description)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("description")),
+                builder.lower(root.get("description")),
                 '%' + description.toLowerCase() + '%'));
         }
         String isbn = this.example.getIsbn();
         if (isbn != null && !"".equals(isbn)) {
             predicatesList.add(builder.like(
-                builder.lower(root.<String>get("isbn")),
+                builder.lower(root.get("isbn")),
                 '%' + isbn.toLowerCase() + '%'));
         }
         Integer nbOfPage = this.example.getNbOfPage();
