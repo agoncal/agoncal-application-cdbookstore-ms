@@ -12,7 +12,7 @@
 
     <modules>
         <module>cdbookstore-web</module>
-        <module>invoice-ms</module>
+        <module>invoices-ms</module>
         <module>test</module>
         <module>topcds-ms</module>
         <module>topbooks-ms</module>

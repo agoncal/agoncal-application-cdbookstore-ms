@@ -10,7 +10,9 @@ import java.net.URI;
 
 public interface ServiceRegistry {
 
-    URI getTopRatedCDsURI();
+    URI getTopRatedCDsServiceURI();
 
-    URI getTopRatedBooksURI();
+    URI getTopRatedBooksServiceURI();
+
+    URI getInvoiceServiceURI();
 }

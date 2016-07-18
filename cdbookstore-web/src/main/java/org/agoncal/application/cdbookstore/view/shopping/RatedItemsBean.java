@@ -79,7 +79,7 @@ public class RatedItemsBean {
 
     private void doFindTopRatedCDs() {
 
-        URI serviceURI = serviceRegistry.getTopRatedCDsURI();
+        URI serviceURI = serviceRegistry.getTopRatedCDsServiceURI();
         if (serviceURI == null) return;
 
         Response response = ClientBuilder.newClient().target(serviceURI).request(MediaType.APPLICATION_JSON).get();
@@ -91,7 +91,7 @@ public class RatedItemsBean {
 
     private void doFindTopRatedBooks() {
 
-        URI serviceURI = serviceRegistry.getTopRatedBooksURI();
+        URI serviceURI = serviceRegistry.getTopRatedBooksServiceURI();
         if (serviceURI == null) return;
 
         Response response = ClientBuilder.newClient().target(serviceURI).request(MediaType.APPLICATION_JSON).get();

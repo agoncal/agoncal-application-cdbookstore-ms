@@ -1,6 +1,7 @@
 package org.agoncal.application.cdbookstore.view.shopping;
 
 import org.agoncal.application.cdbookstore.model.*;
+import org.agoncal.application.cdbookstore.registry.ServiceRegistry;
 import org.agoncal.application.cdbookstore.view.account.AccountBean;
 
 import javax.enterprise.context.SessionScoped;
@@ -11,7 +12,12 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.Validator;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,18 +37,16 @@ public class ShoppingCartBean implements Serializable {
 
     @Inject
     private FacesContext facesContext;
-
     @Inject
     private AccountBean accountBean;
-
     @Inject
     private EntityManager em;
-
     @Inject
     private Logger logger;
-
     @Inject
     private Validator validator;
+    @Inject
+    private ServiceRegistry serviceRegistry;
 
     // ======================================
     // =             Attributes             =
@@ -108,11 +112,24 @@ public class ShoppingCartBean implements Serializable {
         validator.validate(shoppingCart);
 
         // Sending the invoice
-        logger.info("An invoice has been sent to the queue");
+        URI serviceURI = serviceRegistry.getTopRatedBooksServiceURI();
+        if (serviceURI != null) {
+            Response response = ClientBuilder.newClient().target(serviceURI).request().post(Entity.entity(shoppingCart, MediaType.APPLICATION_JSON));
 
-        // Displaying the invoice creation
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Order created",
-            "You will receive a confirmation email"));
+            if (response != null && response.getStatus() != Response.Status.CREATED.getStatusCode()) {
+                logger.severe("Invoice could not be sent to " + serviceURI + " due to response code " + response.getStatus());
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order could not be created",
+                    "Problem connecting to the Invoice service " + response.getStatus()));
+            }
+
+            logger.severe("An invoice has been sent to " + serviceURI);
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Order created",
+                "You will receive a confirmation email"));
+        } else {
+            logger.severe("Invoice could not be sent");
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order could not be created",
+                "Problem connecting to the Invoice service"));
+        }
 
         return "/main";
     }

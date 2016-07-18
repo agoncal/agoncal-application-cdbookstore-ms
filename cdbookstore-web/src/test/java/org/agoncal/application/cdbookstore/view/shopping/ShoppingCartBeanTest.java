@@ -1,6 +1,8 @@
 package org.agoncal.application.cdbookstore.view.shopping;
 
 import org.agoncal.application.cdbookstore.model.*;
+import org.agoncal.application.cdbookstore.registry.DefaultRegistry;
+import org.agoncal.application.cdbookstore.registry.ServiceRegistry;
 import org.agoncal.application.cdbookstore.util.ResourceProducer;
 import org.agoncal.application.cdbookstore.view.account.AccountBean;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -43,6 +45,8 @@ public class ShoppingCartBeanTest {
             .addClass(ShoppingCart.class)
             .addClass(ShoppingCartItem.class)
             .addClass(ResourceProducer.class)
+            .addClass(DefaultRegistry.class)
+            .addClass(ServiceRegistry.class)
             .addAsManifestResource("META-INF/persistence-test.xml", "persistence.xml")
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
