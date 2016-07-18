@@ -29,7 +29,7 @@
         <!-- APPLICATION -->
         <dependency>
             <groupId>org.agoncal.application.cdbookstore-ms</groupId>
-            <artifactId>invoice-ms</artifactId>
+            <artifactId>invoices-ms</artifactId>
             <version>1.0</version>
             <classifier>classes</classifier>
             <scope>test</scope>
