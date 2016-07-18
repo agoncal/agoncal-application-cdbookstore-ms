@@ -23,17 +23,17 @@
         <h:form rendered="#{!shoppingCartBean.shoppingCartIsEmpty()}">
             <h:dataTable value="#{shoppingCartBean.cartItems}" var="_item" styleClass="table">
                 <h:column>
-                    <h:outputText value="#{_item.item.title}"/>
+                    <h:outputText value="#{_item.title}"/>
                     <br/>
                     <h:link outcome="/shopping/viewItem.xhtml">
-                        <f:param name="id" value="#{_item.item.id}"/>
-                        <p:graphicImage url="#{_item.item.smallImageURL}" id="image"/>
+                        <f:param name="id" value="#{_item.id}"/>
+                        <p:graphicImage url="#{_item.smallImageURL}" id="image"/>
                     </h:link>
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{shoppingCartBean.updateQuantity}" styleClass="arrow_refresh">
                         <h:outputText value="Update"/>
-                        <f:param name="itemId" value="#{_item.item.id}"/>
+                        <f:param name="itemId" value="#{_item.id}"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
@@ -41,7 +41,7 @@
                 </h:column>
                 <h:column>
                     x
-                    <h:outputText value="$#{_item.item.unitCost}"/>
+                    <h:outputText value="$#{_item.unitCost}"/>
                 </h:column>
                 <h:column>
                     = <h:outputText value="$#{_item.subTotal}"/>
@@ -49,7 +49,7 @@
                 <h:column>
                     <h:commandLink action="#{shoppingCartBean.removeItemFromCart}" styleClass="remove-from-cart">
                         <h:outputText value="Remove"/>
-                        <f:param name="itemId" value="#{_item.item.id}"/>
+                        <f:param name="itemId" value="#{_item.id}"/>
                     </h:commandLink>
                 </h:column>
             </h:dataTable>

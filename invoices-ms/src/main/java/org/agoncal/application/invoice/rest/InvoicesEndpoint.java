@@ -46,7 +46,6 @@ public class InvoicesEndpoint {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Invoice invoice) {
         invoice = invoiceService.persist(invoice);
         URI uri = UriBuilder.fromResource(InvoicesEndpoint.class).path(String.valueOf(invoice.getId())).build();

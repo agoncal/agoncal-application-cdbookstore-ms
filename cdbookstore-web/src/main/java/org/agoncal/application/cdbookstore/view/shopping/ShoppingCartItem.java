@@ -1,8 +1,13 @@
 package org.agoncal.application.cdbookstore.view.shopping;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Objects;
 
 /**
@@ -16,6 +21,11 @@ public class ShoppingCartItem {
     // ======================================
     // =             Attributes             =
     // ======================================
+
+    @XmlTransient
+    protected Long id;
+    @XmlTransient
+    protected String smallImageURL;
 
     @NotNull
     @Size(min = 1, max = 200)
@@ -36,7 +46,14 @@ public class ShoppingCartItem {
     }
 
     public ShoppingCartItem(String title, Float unitCost, Integer quantity) {
+        this.title = title;
+        this.unitCost = unitCost;
+        this.quantity = quantity;
+    }
 
+    public ShoppingCartItem(Long id, String smallImageURL, String title, Float unitCost, Integer quantity) {
+        this.id = id;
+        this.smallImageURL = smallImageURL;
         this.title = title;
         this.unitCost = unitCost;
         this.quantity = quantity;
@@ -53,6 +70,22 @@ public class ShoppingCartItem {
     // ======================================
     // =         Getters & setters          =
     // ======================================
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSmallImageURL() {
+        return smallImageURL;
+    }
+
+    public void setSmallImageURL(String smallImageURL) {
+        this.smallImageURL = smallImageURL;
+    }
 
     public String getTitle() {
         return title;

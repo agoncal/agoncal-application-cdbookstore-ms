@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -123,6 +124,6 @@ public class InvoicesEndpointTest {
         invoice.addInvoiceLine(new InvoiceLine("Help", 12.99F, 1));
         invoice.addInvoiceLine(new InvoiceLine("Java EE 7", 18.99F, 2));
 
-        assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), webTarget.path("999999").request(MediaType.APPLICATION_JSON).get().getStatus());
+        assertEquals(Response.Status.CREATED.getStatusCode(), webTarget.request().post(Entity.entity(invoice, MediaType.APPLICATION_XML)).getStatus());
     }
 }
