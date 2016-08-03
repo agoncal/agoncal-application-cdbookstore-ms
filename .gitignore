@@ -1,32 +1,31 @@
-*/target/**
-.DS_Store
-Thumbs.db
-.idea
-*.lst
-*.log
-*.jdbc
+# exclude all
+/*
+
+# include important folders
+# need maven files
+!pom.xml
+
+# include markdowns
+!README.md
+!LICENSE
+!CONTRIBUTING.md
+
+# include sourcecode
+!cdbookstore-web
+!invoices-ms
+!test
+!topbooks-ms
+!topcds-ms
+
+# include git important files
+!.gitmodules
+!.gitignore
+
+# include doployment scripts
+!deploy.sh
+!undeploy.sh
+
+# include EditorConfig support file
+!.editorconfig
+
 *.iml
-*.class
-*.jar
-*.war
-*.ear
-*.rar
-*.ipr
-*.iws
-rebel.xml
-*DB
-*.dat
-.classpath
-.project
-.settings
-WebContent
-*.vpp~*
-*.vpdm
-vpproject
-.vpprefdata
-*dummy*.*
-*-soapui-project.xml
-.lock
-teamworkUser.xml
-projectFilesBackup*
-*.gzprojectFilesBackup*
