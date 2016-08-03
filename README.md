@@ -59,18 +59,16 @@ If you want to execute each application on different WildFly instances, just do 
 
 ## Execute the sample
 
-Once deployed go to the following URL and start buying some books and cds: [http://localhost:8080/applicationCDBookStore](http://localhost:8080/applicationCDBookStore).
+Once deployed go to the following URL and start buying some books and cds: [http://localhost:8080/webCDBookStore](http://localhost:8080/webCDBookStore).
 
-The admin [REST interface](rs/application.wadl) allows you to create/update/remove items in the catalog, orders or customers. You can run the following [curl](http://curl.haxx.se/) commands :
+The admin [REST interface](rest/) allows you to create/update/remove items in the catalog, orders or customers. You can run the following [curl](http://curl.haxx.se/) commands :
 
-* `curl -X GET http://localhost:8080/applicationCDBookStore/rs/catalog/categories`
-* `curl -X GET http://localhost:8080/applicationCDBookStore/rs/catalog/products`
-* `curl -X GET http://localhost:8080/applicationCDBookStore/rs/catalog/items`
-* `curl -X GET http://localhost:8085/applicationToprated/toprateditems`
+* `curl -X GET http://localhost:8080/webCDBookStore/rest/books`
+* `curl -X http://localhost:8080/webCDBookStore/rest/cds`
 
 You can also get a JSON representation as follow :
 
-* `curl -X GET -H "accept: application/json" http://localhost:8080/applicationCDBookStore/rs/catalog/items`
+* `curl -X GET -H "accept: application/json" http://localhost:8080/webCDBookStore/rest/books`
 
 ## Third Party Tools & Frameworks
 
